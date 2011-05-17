@@ -72,7 +72,7 @@ YAML
         pagerfanta.view.default:
             class: Pagerfanta\View\DefaultView
             public: false
-            tags: [{ name: pagerfanta.view alias: default }]
+            tags: [{ name: pagerfanta.view, alias: default }]
 
 Reusing Options
 ---------------
@@ -88,14 +88,14 @@ For this you have to define views with the special view *OptionableView*:
                 - @pagerfanta.view.default
                 - { proximity: 2, previous_message: Anterior, next_message: Siguiente }
             public: false
-            tags: [{ name: pagerfanta.view alias: my_view_1 }]
+            tags: [{ name: pagerfanta.view, alias: my_view_1 }]
         pagerfanta.view.my_view_2:
             class: Pagerfanta\View\OptionableView
             arguments:
                 - @pagerfanta.view.default
                 - { proximity: 5 }
             public: false
-            tags: [{ name: pagerfanta.view alias: my_view_2 }]
+            tags: [{ name: pagerfanta.view, alias: my_view_2 }]
 
 And using then:
 
