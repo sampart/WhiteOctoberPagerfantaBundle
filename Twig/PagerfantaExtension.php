@@ -54,10 +54,14 @@ class PagerfantaExtension extends \Twig_Extension
      */
     public function renderPagerfanta(PagerfantaInterface $pagerfanta, $viewName, array $options = array())
     {
-        $router = $this->container->get('router');
-        $request = $this->container->get('request');
-        $route = $request->get('_route');
-        $routeParams = $request->query->all();
+        $options = array_replace(array(
+            'routeParams' => array(),
+        ), $options);
+
+        $router      = $this->container->get('router');
+        $request     = $this->container->get('request');
+        $route       = $request->get('_route');
+        $routeParams = array_merge($request->query->all(), $options['routeParams']);
 
         $routeGenerator = function($page) use($router, $route, $routeParams) {
             return $router->generate($route, array_merge($routeParams, array('page' => $page)));
