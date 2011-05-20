@@ -54,13 +54,26 @@ class PagerfantaExtension extends \Twig_Extension
      */
     public function renderPagerfanta(PagerfantaInterface $pagerfanta, $viewName, array $options = array())
     {
+        $options = array_replace(array(
+            'routeName'   => null,
+            'routeParams' => array(),
+        ), $options);
+
         $router = $this->container->get('router');
         $request = $this->container->get('request');
-        $route = $request->get('_route');
-        $routeParams = $request->query->all();
 
-        $routeGenerator = function($page) use($router, $route, $routeParams) {
-            return $router->generate($route, array_merge($routeParams, array('page' => $page)));
+        if (null === $options['routeName']) {
+            $options['routeName'] = $request->attributes->get('_route');
+            $options['routeParams'] = $request->query->all();
+            foreach ($router->getRouteCollection()->get($options['routeName'])->compile()->getVariables() as $variable) {
+                $options['routeParams'][$variable] = $request->attributes->get($variable);
+            }
+        }
+
+        $routeName = $options['routeName'];
+        $routeParams = $options['routeParams'];
+        $routeGenerator = function($page) use($router, $routeName, $routeParams) {
+            return $router->generate($routeName, array_merge($routeParams, array('page' => $page)));
         };
 
         return $this->container->get('white_october_pagerfanta.view_factory')->get($viewName)->render($pagerfanta, $routeGenerator, $options);
