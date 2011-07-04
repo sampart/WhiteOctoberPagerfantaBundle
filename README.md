@@ -49,7 +49,9 @@ The routes are generated automatically for the current route using the variable 
 
 The bundle comes with the *DefaultView* with with the *default* name.
 
-    {{ pagerfanta(pagerfanta, 'default') }}
+    <div class="pagerfanta">
+        {{ pagerfanta(pagerfanta, 'default') }}
+    </div>
 
 With Options
 
