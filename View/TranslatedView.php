@@ -51,13 +51,8 @@ class TranslatedView implements ViewInterface
      */
     public function render(PagerfantaInterface $pagerfanta, $routeGenerator, array $options = array())
     {
-        if (!isset($options['previous_message'])) {
-            $options['previous_message'] = $this->translator->trans('pagerfanta.previous');
-        }
-
-        if (!isset($options['next_message'])) {
-            $options['next_message'] = $this->translator->trans('pagerfanta.next');
-        }
+        $options['previous_message'] = $this->translator->trans('pagerfanta.previous');
+        $options['next_message']     = $this->translator->trans('pagerfanta.next');
 
         return $this->view->render($pagerfanta, $routeGenerator, $options);
     }
