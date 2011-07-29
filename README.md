@@ -43,7 +43,7 @@ Add the WhiteOctoberPagerfantaBundle to your application kernel:
 Rendering pagerfantas
 ---------------------
 
-    {{ pagerfanta(pagerfanta, view_name, view_optoins) }}
+    {{ pagerfanta(pagerfanta, view_name, view_options) }}
 
 The routes are generated automatically for the current route using the variable "page" to propagate the page number.
 
