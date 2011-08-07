@@ -49,15 +49,22 @@ Rendering pagerfantas
 The routes are generated automatically for the current route using the variable
 "page" to propagate the page number.
 
-The bundle comes with the *DefaultView* with the *default* name.
+By default, the bundle uses the *DefaultView* with the *default* name. The
+default syntax is:
 
     <div class="pagerfanta">
-        {{ pagerfanta(pagerfanta, 'default') }}
+        {{ pagerfanta(my_pager) }}
+    </div>
+
+If you want to use a custom template, add another argument
+
+    <div class="pagerfanta">
+        {{ pagerfanta(my_pager, 'my_template') }}
     </div>
 
 With Options
 
-    {{ pagerfanta(pagerfanta, 'default', { 'proximity': 2}) }}
+    {{ pagerfanta(my_pager, 'default', { 'proximity': 2}) }}
 
 See the Pagerfanta documentation for the list of the parameters.
 
