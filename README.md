@@ -43,7 +43,7 @@ Add the WhiteOctoberPagerfantaBundle to your application kernel:
 Rendering pagerfantas
 ---------------------
 
-    {{ pagerfanta(pagerfanta, view_name, view_optoins) }}
+    {{ pagerfanta(pagerfanta, view_name, view_options) }}
 
 The routes are generated automatically for the current route using the variable "page" to propagate the page number.
 
@@ -56,6 +56,13 @@ The bundle comes with the *DefaultView* with with the *default* name.
 With Options
 
     {{ pagerfanta(pagerfanta, 'default', { 'proximity': 2}) }}
+
+Translate in your language
+--------------------------
+
+The bundle offers a second view called *translated* which is the same as the *default* but with texts translated into the user language.
+
+    {{ pagerfanta(pagerfanta, 'translated') }}
 
 Adding Views
 ------------
