@@ -52,7 +52,7 @@ class PagerfantaExtension extends \Twig_Extension
      *
      * @return string The pagerfanta rendered.
      */
-    public function renderPagerfanta(PagerfantaInterface $pagerfanta, $viewName, array $options = array())
+    public function renderPagerfanta(PagerfantaInterface $pagerfanta, $viewName = 'default', array $options = array())
     {
         $options = array_replace(array(
             'routeName'   => null,
