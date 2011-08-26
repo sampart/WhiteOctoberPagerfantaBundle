@@ -55,8 +55,9 @@ class PagerfantaExtension extends \Twig_Extension
     public function renderPagerfanta(PagerfantaInterface $pagerfanta, $viewName = 'default', array $options = array())
     {
         $options = array_replace(array(
-            'routeName'   => null,
-            'routeParams' => array(),
+            'routeName'     => null,
+            'routeParams'   => array(),
+            'pageParameter' => 'page',
         ), $options);
 
         $router = $this->container->get('router');
@@ -73,10 +74,11 @@ class PagerfantaExtension extends \Twig_Extension
             }
         }
 
-        $routeName = $options['routeName'];
-        $routeParams = $options['routeParams'];
-        $routeGenerator = function($page) use($router, $routeName, $routeParams) {
-            return $router->generate($routeName, array_merge($routeParams, array('page' => $page)));
+        $routeName     = $options['routeName'];
+        $routeParams   = $options['routeParams'];
+        $pageParameter = $options['pageParameter'];
+        $routeGenerator = function($page) use($router, $routeName, $routeParams, $pageParameter) {
+            return $router->generate($routeName, array_merge($routeParams, array($pageParameter => $page)));
         };
 
         return $this->container->get('white_october_pagerfanta.view_factory')->get($viewName)->render($pagerfanta, $routeGenerator, $options);
