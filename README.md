@@ -60,9 +60,9 @@ With Options
 Translate in your language
 --------------------------
 
-The bundle offers a second view called *translated* which is the same as the *default* but with texts translated into the user language.
+The bundle offers a second view called *default_translated* which is the same as the *default* but with texts translated into the user language.
 
-    {{ pagerfanta(pagerfanta, 'translated') }}
+    {{ pagerfanta(pagerfanta, 'default_translated') }}
 
 Adding Views
 ------------

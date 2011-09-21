@@ -20,9 +20,9 @@
             <tag name="pagerfanta.view" alias="default" />
         </service>
 
-        <!-- "translated" view -->
-        <service id="pagerfanta.view.translated" class="WhiteOctober\PagerfantaBundle\View\TranslatedView" public="false">
-            <tag name="pagerfanta.view" alias="translated" />
+        <!-- "default_translated" view -->
+        <service id="pagerfanta.view.default_translated" class="WhiteOctober\PagerfantaBundle\View\DefaultTranslatedView" public="false">
+            <tag name="pagerfanta.view" alias="default_translated" />
             <argument type="service" id="pagerfanta.view.default" />
             <argument type="service" id="translator" />
         </service>

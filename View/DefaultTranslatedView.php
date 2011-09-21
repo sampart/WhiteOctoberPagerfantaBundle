@@ -22,7 +22,7 @@ use Symfony\Component\Translation\TranslatorInterface;
  * 
  * @author Jérôme Tamarelle <jerome@tamarelle.net>
  */
-class TranslatedView implements ViewInterface
+class DefaultTranslatedView implements ViewInterface
 {
     /**
      * @var \Pagerfanta\View\ViewInterface
@@ -51,8 +51,8 @@ class TranslatedView implements ViewInterface
      */
     public function render(PagerfantaInterface $pagerfanta, $routeGenerator, array $options = array())
     {
-        $options['previous_message'] = $this->translator->trans('pagerfanta.previous');
-        $options['next_message']     = $this->translator->trans('pagerfanta.next');
+        $options['previous_message'] = $this->translator->trans($options['previous_message'] ?: 'pagerfanta.previous');
+        $options['next_message']     = $this->translator->trans($options['next_message'] ?: 'pagerfanta.next');
 
         return $this->view->render($pagerfanta, $routeGenerator, $options);
     }
@@ -62,6 +62,6 @@ class TranslatedView implements ViewInterface
      */
     public function getName()
     {
-        return 'translated';
+        return 'default_translated';
     }
 }
