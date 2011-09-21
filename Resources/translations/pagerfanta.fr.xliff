@@ -3,11 +3,11 @@
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
             <trans-unit id="1">
-                <source>pagerfanta.previous</source>
+                <source>previous</source>
                 <target>Précédent</target>
             </trans-unit>
             <trans-unit id="2">
-                <source>pagerfanta.next</source>
+                <source>next</source>
                 <target>Suivant</target>
             </trans-unit>
         </body>
