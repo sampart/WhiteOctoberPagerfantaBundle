@@ -20,6 +20,11 @@
             <tag name="pagerfanta.view" alias="default" />
         </service>
 
+        <!-- "twitter_bootstrap" view -->
+        <service id="pagerfanta.view.twitter_bootstrap" class="Pagerfanta\View\TwitterBootstrapView" public="false">
+            <tag name="pagerfanta.view" alias="twitter_bootstrap" />
+        </service>
+
         <!-- Twig Extension -->
         <service id="twig.extension.pagerfanta" class="WhiteOctober\PagerfantaBundle\Twig\PagerfantaExtension" public="false">
             <tag name="twig.extension" />
