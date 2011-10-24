@@ -70,10 +70,12 @@ See the Pagerfanta documentation for the list of the parameters.
 Translate in your language
 --------------------------
 
-The bundle offers a second view called *default_translated* which is the same
-as the *default* but with texts translated into the user language.
+The bundle also offers two views to translate the *default* and the
+*twitter bootstrap* views.
 
     {{ pagerfanta(pagerfanta, 'default_translated') }}
+
+    {{ pagerfanta(pagerfanta, 'twitter_bootstrap_translated') }}
 
 Adding Views
 ------------
