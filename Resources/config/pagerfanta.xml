@@ -25,6 +25,13 @@
             <tag name="pagerfanta.view" alias="twitter_bootstrap" />
         </service>
 
+        <!-- "default_translated" view -->
+        <service id="pagerfanta.view.default_translated" class="WhiteOctober\PagerfantaBundle\View\DefaultTranslatedView" public="false">
+            <tag name="pagerfanta.view" alias="default_translated" />
+            <argument type="service" id="pagerfanta.view.default" />
+            <argument type="service" id="translator" />
+        </service>
+
         <!-- Twig Extension -->
         <service id="twig.extension.pagerfanta" class="WhiteOctober\PagerfantaBundle\Twig\PagerfantaExtension" public="false">
             <tag name="twig.extension" />

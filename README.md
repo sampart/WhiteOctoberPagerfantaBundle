@@ -43,9 +43,11 @@ Add the WhiteOctoberPagerfantaBundle to your application kernel:
 Rendering pagerfantas
 ---------------------
 
-    {{ pagerfanta(pagerfanta_name, view_name, view_options) }}
+    {{ pagerfanta(my_pager, view_name, view_options) }}
 
-The routes are generated automatically for the current route using the variable "page" to propagate the page number. By default, the bundle uses the *DefaultView* with the *default* name. The default syntax is:
+The routes are generated automatically for the current route using the variable
+"page" to propagate the page number. By default, the bundle uses the
+*DefaultView* with the *default* name. The default syntax is:
 
     <div class="pagerfanta">
         {{ pagerfanta(my_pager) }}
@@ -64,6 +66,14 @@ With Options
     {{ pagerfanta(my_pager, 'default', { 'proximity': 2}) }}
 
 See the Pagerfanta documentation for the list of the parameters.
+
+Translate in your language
+--------------------------
+
+The bundle offers a second view called *default_translated* which is the same
+as the *default* but with texts translated into the user language.
+
+    {{ pagerfanta(pagerfanta, 'default_translated') }}
 
 Adding Views
 ------------
@@ -87,7 +97,10 @@ YAML
 Reusing Options
 ---------------
 
-Sometimes you want to reuse options of a view in your project, and you don't want to write them all the times you render a view, or you can have different configurations for a view and you want to save them in a place to be able to change them easily.
+Sometimes you want to reuse options of a view in your project, and you don't
+want to write them all the times you render a view, or you can have different
+configurations for a view and you want to save them in a place to be able to
+change them easily.
 
 For this you have to define views with the special view *OptionableView*:
 
@@ -117,7 +130,9 @@ The easiest way to render pagerfantas (or paginators!) ;)
 Basic CSS for the default view
 ------------------------------
 
-The bundles comes with a basic css for the default view to be able to use a good paginator faster. Of course you can change it, use another one or create your own view.
+The bundles comes with a basic css for the default view to be able to use a
+good paginator faster. Of course you can change it, use another one or
+create your own view.
 
     <link rel="stylesheet" href="{{ asset('bundles/whiteoctoberpagerfanta/css/pagerfantaDefault.css') }}" type="text/css" media="all" />
 
@@ -129,7 +144,8 @@ Pablo Díez - <pablodip@gmail.com>
 License
 -------
 
-Pagerfanta is licensed under the MIT License. See the LICENSE file for full details.
+Pagerfanta is licensed under the MIT License. See the LICENSE file for full
+details.
 
 Sponsors
 --------
