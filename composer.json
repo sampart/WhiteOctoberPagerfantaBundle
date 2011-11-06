@@ -1,0 +1,21 @@
+{
+    "name": "white-october/pagerfanta-bundle",
+    "description": "Bundle to use Pagerfanta with Symfony2",
+    "keywords": ["page","paging"],
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pablo Díez",
+            "email": "pablodip@gmail.com"
+        }
+    ],
+    "require": {
+        "symfony/framework-bundle": "2.*",
+        "pagerfanta/pagerfanta": "master-dev"
+    },
+    "autoload": {
+        "psr-0": { "WhiteOctober\\PagerfantaBundle": "" }
+    },
+    "target-dir": "WhiteOctober/PagerfantaBundle"
+}
