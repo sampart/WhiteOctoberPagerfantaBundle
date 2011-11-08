@@ -12,7 +12,6 @@
 namespace WhiteOctober\PagerfantaBundle\View;
 
 use Pagerfanta\PagerfantaInterface;
-use Pagerfanta\View\DefaultView;
 use Pagerfanta\View\ViewInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 
@@ -34,7 +33,7 @@ class DefaultTranslatedView implements ViewInterface
      * @param DefaultViewInterface       $view       A default view.
      * @param TranslatorInterface $translator A translator interface.
      */
-    public function __construct(DefaultView $view, TranslatorInterface $translator)
+    public function __construct(ViewInterface $view, TranslatorInterface $translator)
     {
         $this->view = $view;
         $this->translator = $translator;
