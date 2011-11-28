@@ -70,10 +70,7 @@ class PagerfantaExtension extends \Twig_Extension
             if ('_internal' === $options['routeName']) {
                 throw new \Exception('PagerfantaBundle can not guess the route when used in a subrequest');
             }
-            $options['routeParams'] = $request->query->all();
-            foreach ($router->getRouteCollection()->get($options['routeName'])->compile()->getVariables() as $variable) {
-                $options['routeParams'][$variable] = $request->attributes->get($variable);
-            }
+            $options['routeParams'] = $request->attributes->get('_route_params');
         }
 
         $routeName = $options['routeName'];
