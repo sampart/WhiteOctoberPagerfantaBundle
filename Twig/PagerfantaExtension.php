@@ -40,7 +40,7 @@ class PagerfantaExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'pagerfanta'  => new \Twig_Function_Method($this, 'renderPagerfanta', array('is_safe' => array('html'))),
+            'pagerfanta' => new \Twig_Function_Method($this, 'renderPagerfanta', array('is_safe' => array('html'))),
         );
     }
 
@@ -62,21 +62,22 @@ class PagerfantaExtension extends \Twig_Extension
         ), $options);
 
         $router = $this->container->get('router');
-        $request = $this->container->get('request');
 
         if (null === $options['routeName']) {
+            $request = $this->container->get('request');
+
             $options['routeName'] = $request->attributes->get('_route');
-            $options['routeParams'] = $request->query->all();
-            if ($options['routeName'] === '_internal') {
+            if ('_internal' === $options['routeName']) {
                 throw new \Exception('PagerfantaBundle can not guess the route when used in a subrequest');
             }
+            $options['routeParams'] = $request->query->all();
             foreach ($router->getRouteCollection()->get($options['routeName'])->compile()->getVariables() as $variable) {
                 $options['routeParams'][$variable] = $request->attributes->get($variable);
             }
         }
 
-        $routeName        = $options['routeName'];
-        $routeParams      = $options['routeParams'];
+        $routeName = $options['routeName'];
+        $routeParams = $options['routeParams'];
         $pagePropertyPath = new PropertyPath($options['pageParameter']);
         $routeGenerator = function($page) use($router, $routeName, $routeParams, $pagePropertyPath) {
             $pagePropertyPath->setValue($routeParams, $page);
