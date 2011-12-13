@@ -3,6 +3,8 @@ WhiteOctoberPagerfantaBundle
 
 Bundle to use [Pagerfanta](https://github.com/whiteoctober/Pagerfanta) with [Symfony2](https://github.com/symfony/symfony).
 
+**Note:** If you are using a 2.0.x release of Symfony2, please use the `symfony2.0` branch of this bundle.  The master branch of this bundle tracks the Symfony2 master branch.
+
 The bundle includes:
 
   * Twig function to render pagerfantas with views and options.
