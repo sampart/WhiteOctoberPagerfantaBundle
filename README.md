@@ -15,10 +15,34 @@ The bundle includes:
 Installation
 ------------
 
-Add Pagerfanta and WhiteOctoberPagerfantaBundle to your vendors:
+### Step 1) Get the bundle and the library
+
+First, grab the Fantapager library and WhiteOctoberPagerfantaBundle. There are two different ways
+to do this:
+
+#### Method a) Using the `deps` file
+
+Add the following lines to your  `deps` file and then run `php bin/vendors
+install`:
+
+```
+[Pagerfanta]
+    git=http://github.com/whiteoctober/Pagerfanta.git
+
+[WhiteOctoberPagerfantaBundle]
+    git=https://github.com/KnpLabs/KnpMenuBundle.git
+    target=bundles/WhiteOctober/PagerfantaBundle
+```
+
+#### Method b) Using submodules
+
+Run the following commands to bring in Pagerfanta and WhiteOctoberPagerfantaBundle as submodules.
+
+```bash
 
     git submodule add http://github.com/whiteoctober/Pagerfanta.git vendor/pagerfanta
     git submodule add http://github.com/whiteoctober/WhiteOctoberPagerfantaBundle.git vendor/bundles/WhiteOctober/PagerfantaBundle
+```
 
 Add both to your autoload:
 
