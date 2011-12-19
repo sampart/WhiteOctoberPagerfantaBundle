@@ -74,8 +74,11 @@ A likely place to instanciate is pagerfanta is from within a controller.  An ada
 needs to be associated with each pagerfanta to provide the actual data.  This 
 example uses Propel
 
-    #/src/Acme/DemoBundle/Controller/WidgetController.php
+    # /src/Acme/DemoBundle/Controller/WidgetController.php
   
+    /**
+     * @Route("/browse/{page}", name="_browse_widgets")
+     */
     function browseWidgetsAction($page)
     { 
     $query = WidgetQuery::create(); // query for the data to be 
