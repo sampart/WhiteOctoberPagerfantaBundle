@@ -28,9 +28,10 @@ install`:
 ```
 [Pagerfanta]
     git=http://github.com/whiteoctober/Pagerfanta.git
+    target=/Pagerfanta
 
 [WhiteOctoberPagerfantaBundle]
-    git=https://github.com/KnpLabs/KnpMenuBundle.git
+    git=http://github.com/whiteoctober/WhiteOctoberPagerfantaBundle.git
     target=bundles/WhiteOctober/PagerfantaBundle
 ```
 
@@ -40,7 +41,7 @@ Run the following commands to bring in Pagerfanta and WhiteOctoberPagerfantaBund
 
 ```bash
 
-    git submodule add http://github.com/whiteoctober/Pagerfanta.git vendor/pagerfanta
+    git submodule add http://github.com/whiteoctober/Pagerfanta.git vendor/Pagerfanta
     git submodule add http://github.com/whiteoctober/WhiteOctoberPagerfantaBundle.git vendor/bundles/WhiteOctober/PagerfantaBundle
 ```
 
@@ -50,7 +51,7 @@ Add both to your autoload:
     $loader->registerNamespaces(array(
         // ...
         'WhiteOctober\PagerfantaBundle' => __DIR__.'/../vendor/bundles',
-        'Pagerfanta'                    => __DIR__.'/../vendor/pagerfanta/src',
+        'Pagerfanta'                    => __DIR__.'/../vendor/Pagerfanta/src',
         // ...
     ));
 
