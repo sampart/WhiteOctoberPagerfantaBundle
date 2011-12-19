@@ -74,22 +74,22 @@ A likely place to instanciate is pagerfanta is from within a controller.  An ada
 needs to be associated with each pagerfanta to provide the actual data.  This 
 example uses Propel
 
-  #/src/Acme/DemoBundle/Controller/WidgetController.php
+    #/src/Acme/DemoBundle/Controller/WidgetController.php
   
-  function browseWidgetsAction($page)
-  { 
-  $query = WidgetQuery::create(); // query for the data to be 
-  $adapter = new PropelAdapter($query);
-  $pagerfanta = new Pagerfanta($adapter);
+    function browseWidgetsAction($page)
+    { 
+    $query = WidgetQuery::create(); // query for the data to be 
+    $adapter = new PropelAdapter($query);
+    $pagerfanta = new Pagerfanta($adapter);
 
-  $pagerfanta->setMaxPerPage($maxPerPage=5); // 10 by default
-  $pagerfanta->setCurrentPage($page); // 1 by default
+    $pagerfanta->setMaxPerPage($maxPerPage=5); // 10 by default
+    $pagerfanta->setCurrentPage($page); // 1 by default
   
-  return $this->render('AcmeDemoBundle:Widget:browse.html.twig', array(
+    return $this->render('AcmeDemoBundle:Widget:browse.html.twig', array(
     	  	'my_pager' => $pagerfanta,
     	  	'widgets' => $pagerfanta->getCurrentPageResults() )
     	  	);
-  }
+    }
 
 
 Rendering pagerfantas (View)
