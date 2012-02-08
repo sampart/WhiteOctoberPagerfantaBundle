@@ -71,7 +71,12 @@ class PagerfantaExtension extends \Twig_Extension
                 throw new \Exception('PagerfantaBundle can not guess the route when used in a subrequest');
             }
             $options['routeParams'] = $request->query->all();
-            foreach ($router->getRouteCollection()->get($options['routeName'])->compile()->getVariables() as $variable) {
+            
+            $route = $router->getRouteCollection()->get($options['routeName']);
+            if (null === $route) {
+                $route = $router->getRouteCollection()->get(sprintf('%s.%s', $options['routeName'], $this->container->get('session')->getLocale()));
+            }
+            foreach ($route->compile()->getVariables() as $variable) {
                 $options['routeParams'][$variable] = $request->attributes->get($variable);
             }
         }
