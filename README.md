@@ -18,6 +18,18 @@ Add Pagerfanta and WhiteOctoberPagerfantaBundle to your vendors:
     git submodule add http://github.com/whiteoctober/Pagerfanta.git vendor/pagerfanta
     git submodule add http://github.com/whiteoctober/WhiteOctoberPagerfantaBundle.git vendor/bundles/WhiteOctober/PagerfantaBundle
 
+Or Using deps:
+
+    [Pagerfanta]
+        git=http://github.com/whiteoctober/Pagerfanta.git
+        target=vendor/pagerfanta
+    
+    [WhiteOctoberPagerfantaBundle]
+        git=http://github.com/whiteoctober/WhiteOctoberPagerfantaBundle.git
+        target=vendor/bundles/WhiteOctober/PagerfantaBundle
+        version=symfony2.0
+
+
 Add both to your autoload:
 
     // app/autoload.php
