@@ -79,6 +79,7 @@ The bundle also offers two views to translate the *default* and the
 
     {{ pagerfanta(pagerfanta, 'twitter_bootstrap_translated') }}
 
+
 Adding Views
 ------------
 
@@ -139,6 +140,42 @@ good paginator faster. Of course you can change it, use another one or
 create your own view.
 
     <link rel="stylesheet" href="{{ asset('bundles/whiteoctoberpagerfanta/css/pagerfantaDefault.css') }}" type="text/css" media="all" />
+
+Build in the controller example
+-------------------------------
+In our controller we can get an instance of pagerfanta, and filter the entities by the current page, it is done automatically thanks at our pagerfanta instance.
+
+Here is an example
+
+#####DemoController
+    public function indexAction() {
+
+        $max_items_per_page = 10;
+        $current_page = $this->getRequest()->get('page', 1);
+
+        $repo = $this->getDoctrine()->getEntityManager()->getRepository('DemoBundle:DemoEntity');
+        $query = $repo->createQueryBuilder('p')->orderBy('p.created_at', 'DESC');
+        
+        $adapter = new DoctrineORMAdapter($query);
+        $pagerfanta = new Pagerfanta($adapter);
+        
+        $pagerfanta->setMaxPerPage($max_items_per_page);
+        $pagerfanta->setCurrentPage($current_page);
+        
+        
+        $entities = $pagerfanta->getCurrentPageResults();
+        $num_pages = $pagerfanta->getNbPages();
+        
+        return $this->render('DemoBundle:Default:index.html.twig', array(
+                     'entities' => $entities,
+                     'pagerfanta_inst' => $pagerfanta,
+                     'num_pages' => $num_pages, //This is optional, we could use it to display in some part the ammount of pages, or just hide the paginator
+                        )
+        );
+    }
+
+#####Some part of the template
+    {{ pagerfanta(pagerfanta_inst, 'twitter_bootstrap_translated', {'proximity': 2}) }}
 
 Author
 ------
