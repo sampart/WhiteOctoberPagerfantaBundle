@@ -141,7 +141,7 @@ create your own view.
 
     <link rel="stylesheet" href="{{ asset('bundles/whiteoctoberpagerfanta/css/pagerfantaDefault.css') }}" type="text/css" media="all" />
 
-Build in the controller example
+Example - How to use pagerfanta in a controller
 -------------------------------
 In our controller we can get an instance of pagerfanta, and filter the entities by the current page, it is done automatically thanks at our pagerfanta instance.
 
