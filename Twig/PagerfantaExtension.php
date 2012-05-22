@@ -58,7 +58,7 @@ class PagerfantaExtension extends \Twig_Extension
         $options = array_replace(array(
             'routeName'     => null,
             'routeParams'   => array(),
-            'pageParameter' => 'page',
+            'pageParameter' => '[page]',
         ), $options);
 
         $router = $this->container->get('router');
