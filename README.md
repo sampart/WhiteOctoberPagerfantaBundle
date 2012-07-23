@@ -15,10 +15,35 @@ The bundle includes:
 Installation
 ------------
 
-Add Pagerfanta and WhiteOctoberPagerfantaBundle to your vendors:
+### Step 1) Get the bundle and the library
 
-    git submodule add http://github.com/whiteoctober/Pagerfanta.git vendor/pagerfanta
+First, grab the Fantapager library and WhiteOctoberPagerfantaBundle. There are two different ways
+to do this:
+
+#### Method a) Using the `deps` file
+
+Add the following lines to your  `deps` file and then run `php bin/vendors
+install`:
+
+```
+[Pagerfanta]
+    git=http://github.com/whiteoctober/Pagerfanta.git
+    target=/Pagerfanta
+
+[WhiteOctoberPagerfantaBundle]
+    git=http://github.com/whiteoctober/WhiteOctoberPagerfantaBundle.git
+    target=bundles/WhiteOctober/PagerfantaBundle
+```
+
+#### Method b) Using submodules
+
+Run the following commands to bring in Pagerfanta and WhiteOctoberPagerfantaBundle as submodules.
+
+```bash
+
+    git submodule add http://github.com/whiteoctober/Pagerfanta.git vendor/Pagerfanta
     git submodule add http://github.com/whiteoctober/WhiteOctoberPagerfantaBundle.git vendor/bundles/WhiteOctober/PagerfantaBundle
+```
 
 Add both to your autoload:
 
@@ -26,7 +51,7 @@ Add both to your autoload:
     $loader->registerNamespaces(array(
         // ...
         'WhiteOctober\PagerfantaBundle' => __DIR__.'/../vendor/bundles',
-        'Pagerfanta'                    => __DIR__.'/../vendor/pagerfanta/src',
+        'Pagerfanta'                    => __DIR__.'/../vendor/Pagerfanta/src',
         // ...
     ));
 
@@ -41,9 +66,37 @@ Add the WhiteOctoberPagerfantaBundle to your application kernel:
             // ...
         );
     }
+    
+Instanciating pagerfantas (Controller)
+--------------------------------------
 
-Rendering pagerfantas
----------------------
+A likely place to instanciate is pagerfanta is from within a controller.  An adapter
+needs to be associated with each pagerfanta to provide the actual data.  This 
+example uses Propel
+
+    # /src/Acme/DemoBundle/Controller/WidgetController.php
+  
+    /**
+     * @Route("/browse/{page}", name="_browse_widgets")
+     */
+    function browseWidgetsAction($page)
+    { 
+    $query = WidgetQuery::create(); // query for the data to be 
+    $adapter = new PropelAdapter($query);
+    $pagerfanta = new Pagerfanta($adapter);
+
+    $pagerfanta->setMaxPerPage($maxPerPage=5); // 10 by default
+    $pagerfanta->setCurrentPage($page); // 1 by default
+  
+    return $this->render('AcmeDemoBundle:Widget:browse.html.twig', array(
+    	  	'my_pager' => $pagerfanta,
+    	  	'widgets' => $pagerfanta->getCurrentPageResults() )
+    	  	);
+    }
+
+
+Rendering pagerfantas (View)
+----------------------------
 
     {{ pagerfanta(my_pager, view_name, view_options) }}
 
