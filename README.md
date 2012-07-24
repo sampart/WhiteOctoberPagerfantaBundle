@@ -131,6 +131,15 @@ And using then:
 
 The easiest way to render pagerfantas (or paginators!) ;)
 
+Configuration
+-------------
+
+It's possible to configure the default view for all rendering in your
+configuration file:
+
+    white_october_pagerfanta:
+        default_view: my_view_1
+
 Basic CSS for the default view
 ------------------------------
 
