@@ -42,6 +42,7 @@ class PagerfantaExtension extends \Twig_Extension
     {
         return array(
             'pagerfanta' => new \Twig_Function_Method($this, 'renderPagerfanta', array('is_safe' => array('html'))),
+            'pagerfanta_page_url' => new \Twig_Function_Method($this, 'getPageUrl')
         );
     }
 
@@ -56,15 +57,49 @@ class PagerfantaExtension extends \Twig_Extension
      */
     public function renderPagerfanta(PagerfantaInterface $pagerfanta, $viewName = null, array $options = array())
     {
-        $options = array_replace(array(
-            'routeName'     => null,
-            'routeParams'   => array(),
-            'pageParameter' => '[page]',
-        ), $options);
-
         if (null === $viewName) {
             $viewName = $this->container->getParameter('white_october_pagerfanta.default_view');
         }
+
+        $routeGenerator = $this->createRouteGenerator($options);
+        return $this->container->get('white_october_pagerfanta.view_factory')->get($viewName)->render($pagerfanta, $routeGenerator, $options);
+    }
+
+    /**
+     * Generates the url for a given page in a pagerfanta instance.
+     *
+     * @param \Pagerfanta\PagerfantaInterface $pagerfanta
+     * @param $page
+     * @param array $options
+     *
+     * @return string The url of the given page
+     *
+     * @throws \InvalidArgumentException
+     */
+    public function getPageUrl(PagerfantaInterface $pagerfanta, $page, array $options = array())
+    {
+        if ($page < 0 || $page > $pagerfanta->count()) throw new \InvalidArgumentException("Page '{$page}' is out of bounds");
+
+        $routeGenerator = $this->createRouteGenerator($options);
+        return $routeGenerator($page);
+    }
+
+    /**
+     * Creates an anonymous function which returns the URL for a given page.
+     *
+     * @param array $options
+     *
+     * @return callable
+     *
+     * @throws \Exception
+     */
+    private function createRouteGenerator($options = array())
+    {
+        $options = array_replace(array(
+                'routeName'     => null,
+                'routeParams'   => array(),
+                'pageParameter' => '[page]',
+            ), $options);
 
         $router = $this->container->get('router');
 
@@ -75,20 +110,19 @@ class PagerfantaExtension extends \Twig_Extension
             if ('_internal' === $options['routeName']) {
                 throw new \Exception('PagerfantaBundle can not guess the route when used in a subrequest');
             }
-                        
+
             $options['routeParams'] = array_merge($request->query->all(), $request->attributes->get('_route_params'));
         }
 
         $routeName = $options['routeName'];
         $routeParams = $options['routeParams'];
         $pagePropertyPath = new PropertyPath($options['pageParameter']);
-        $routeGenerator = function($page) use($router, $routeName, $routeParams, $pagePropertyPath) {
+
+        return function($page) use($router, $routeName, $routeParams, $pagePropertyPath) {
             $propertyAccessor = PropertyAccess::getPropertyAccessor();
             $propertyAccessor->setValue($routeParams, $pagePropertyPath, $page);
             return $router->generate($routeName, $routeParams);
         };
-
-        return $this->container->get('white_october_pagerfanta.view_factory')->get($viewName)->render($pagerfanta, $routeGenerator, $options);
     }
 
     /**
