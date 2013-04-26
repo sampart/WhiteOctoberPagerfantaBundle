@@ -57,6 +57,14 @@
             <tag name="twig.extension" />
             <argument type="service" id="service_container" />
         </service>
+
+        <service id="pagerfanta.convert_not_valid_max_per_page_to_not_found_listener" class="WhiteOctober\PagerfantaBundle\EventListener\ConvertNotValidMaxPerPageToNotFoundListener">
+            <!-- subscribe tag is added in the extension if convert_not_valid_max_per_page_to_not_found options set to true -->
+        </service>
+
+        <service id="pagerfanta.convert_not_valid_current_page_to_not_found_listener" class="WhiteOctober\PagerfantaBundle\EventListener\ConvertNotValidCurrentPageToNotFoundListener">
+            <!-- subscribe tag is added in the extension if convert_not_valid_current_page_to_not_found options set to true -->
+        </service>
     </services>
 
 </container>

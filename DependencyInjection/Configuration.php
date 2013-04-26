@@ -34,6 +34,8 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->scalarNode('default_view')->defaultValue('default')->end()
+                ->booleanNode('convert_not_valid_max_per_page_to_not_found')->defaultFalse()->end()
+                ->booleanNode('convert_not_valid_current_page_to_not_found')->defaultFalse()->end()
             ->end();
 
         return $treeBuilder;

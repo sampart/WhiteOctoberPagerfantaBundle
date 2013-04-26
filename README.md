@@ -36,6 +36,14 @@ Then add the WhiteOctoberPagerfantaBundle to your application kernel:
         );
     }
 
+You can set the parameter to show 404 exception when requested page is not valid.
+It is set to "false" by defauly to provide BC (before it was 500).
+
+    // app/config/config.yml
+    white_october_pagerfanta:
+        convert_not_valid_max_per_page_to_not_found: true
+        convert_not_valid_current_page_to_not_found: true
+
 Rendering pagerfantas
 ---------------------
 
