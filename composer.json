@@ -11,7 +11,7 @@
         }
     ],
     "require": {
-        "symfony/framework-bundle": "~2.1",
+        "symfony/framework-bundle": "~2.2",
         "pagerfanta/pagerfanta": "1.0.*"
     },
     "autoload": {
