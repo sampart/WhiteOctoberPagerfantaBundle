@@ -12,7 +12,8 @@
 namespace WhiteOctober\PagerfantaBundle\Twig;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\Form\Util\PropertyPath;
+use Symfony\Component\PropertyAccess\PropertyPath;
+use Symfony\Component\PropertyAccess\PropertyAccess;
 use Pagerfanta\PagerfantaInterface;
 
 /**
@@ -82,7 +83,8 @@ class PagerfantaExtension extends \Twig_Extension
         $routeParams = $options['routeParams'];
         $pagePropertyPath = new PropertyPath($options['pageParameter']);
         $routeGenerator = function($page) use($router, $routeName, $routeParams, $pagePropertyPath) {
-            $pagePropertyPath->setValue($routeParams, $page);
+            $propertyAccessor = PropertyAccess::getPropertyAccessor();
+            $propertyAccessor->setValue($routeParams, $pagePropertyPath, $page);
             return $router->generate($routeName, $routeParams);
         };
 
