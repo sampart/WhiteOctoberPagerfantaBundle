@@ -20,7 +20,7 @@ use Pagerfanta\PagerfantaInterface;
 /**
  * TwitterBootstrap3TranslatedView
  *
- * This view renders the twitter bootstrap3 view with the text translated *
+ * This view renders the twitter bootstrap3 view with the text translated
  *
  */
 class TwitterBootstrap3TranslatedView extends DefaultTranslatedView implements ViewInterface
