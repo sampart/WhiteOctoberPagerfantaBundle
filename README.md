@@ -15,22 +15,15 @@ The bundle includes:
 Installation
 ------------
 
-Add Pagerfanta and WhiteOctoberPagerfantaBundle to your vendors:
+Add the bundle to your `composer.json`:
 
-    git submodule add http://github.com/whiteoctober/Pagerfanta.git vendor/pagerfanta
-    git submodule add http://github.com/whiteoctober/WhiteOctoberPagerfantaBundle.git vendor/bundles/WhiteOctober/PagerfantaBundle
+    "white-october/pagerfanta-bundle": "dev-master"
 
-Add both to your autoload:
+and run:
 
-    // app/autoload.php
-    $loader->registerNamespaces(array(
-        // ...
-        'WhiteOctober\PagerfantaBundle' => __DIR__.'/../vendor/bundles',
-        'Pagerfanta'                    => __DIR__.'/../vendor/pagerfanta/src',
-        // ...
-    ));
+    php composer.phar install
 
-Add the WhiteOctoberPagerfantaBundle to your application kernel:
+Then add the WhiteOctoberPagerfantaBundle to your application kernel:
 
     // app/AppKernel.php
     public function registerBundles()
