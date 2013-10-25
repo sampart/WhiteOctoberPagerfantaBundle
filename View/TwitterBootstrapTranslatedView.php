@@ -43,8 +43,8 @@ class TwitterBootstrapTranslatedView implements ViewInterface
      */
     public function render(PagerfantaInterface $pagerfanta, $routeGenerator, array $options = array())
     {
-        if (!isset($options['prev_message'])) {
-            $options['prev_message'] = '&larr; '.$this->translator->trans('previous', array(), 'pagerfanta');
+        if (!isset($options['previous_message'])) {
+            $options['previous_message'] = '&larr; '.$this->translator->trans('previous', array(), 'pagerfanta');
         }
         if (!isset($options['next_message'])) {
             $options['next_message'] = $this->translator->trans('next', array(), 'pagerfanta').' &rarr;';
