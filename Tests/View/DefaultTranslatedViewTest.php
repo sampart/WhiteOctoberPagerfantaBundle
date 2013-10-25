@@ -9,22 +9,20 @@
  * file that was distributed with this source code.
  */
 
-namespace WhiteOctober\PagerfantaBundle\View;
+namespace WhiteOctober\PagerfantaBundle\Tests\View;
 
-use Pagerfanta\PagerfantaInterface;
-use Pagerfanta\View\DefaultView;
-use Pagerfanta\View\ViewInterface;
-use Symfony\Component\Translation\TranslatorInterface;
-
-/**
- * Translated view.
- *
- * This view renders the default view with texts translated to the user language.
- *
- * @author Jérôme Tamarelle <jerome@tamarelle.net>
- */
-class DefaultTranslatedView extends TranslatedView
+class DefaultTranslatedViewTest extends TranslatedViewTest
 {
+    protected function viewClass()
+    {
+        return 'Pagerfanta\View\DefaultView';
+    }
+
+    protected function translatedViewClass()
+    {
+        return 'WhiteOctober\PagerfantaBundle\View\DefaultTranslatedView';
+    }
+
     protected function previousMessageOption()
     {
         return 'previous_message';
@@ -45,10 +43,7 @@ class DefaultTranslatedView extends TranslatedView
         return sprintf('%s &#187;', $text);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getName()
+    protected function translatedViewName()
     {
         return 'default_translated';
     }

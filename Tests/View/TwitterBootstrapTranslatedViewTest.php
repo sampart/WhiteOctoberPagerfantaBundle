@@ -9,20 +9,20 @@
  * file that was distributed with this source code.
  */
 
-namespace WhiteOctober\PagerfantaBundle\View;
+namespace WhiteOctober\PagerfantaBundle\Tests\View;
 
-use Pagerfanta\PagerfantaInterface;
-use Pagerfanta\View\TwitterBootstrapView;
-use Pagerfanta\View\ViewInterface;
-use Symfony\Component\Translation\TranslatorInterface;
-
-/**
- * This view renders the twitter bootstrap view with texts translated.
- *
- * @author Pablo Díez <pablodip@gmail.com>
- */
-class TwitterBootstrapTranslatedView extends TranslatedView
+class TwitterBootstrapTranslatedViewTest extends TranslatedViewTest
 {
+    protected function viewClass()
+    {
+        return 'Pagerfanta\View\TwitterBootstrapView';
+    }
+
+    protected function translatedViewClass()
+    {
+        return 'WhiteOctober\PagerfantaBundle\View\TwitterBootstrapTranslatedView';
+    }
+
     protected function previousMessageOption()
     {
         return 'prev_message';
@@ -43,10 +43,7 @@ class TwitterBootstrapTranslatedView extends TranslatedView
         return sprintf('%s &rarr;', $text);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getName()
+    protected function translatedViewName()
     {
         return 'twitter_bootstrap_translated';
     }
