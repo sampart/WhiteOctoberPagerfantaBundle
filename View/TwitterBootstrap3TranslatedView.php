@@ -35,7 +35,6 @@ class TwitterBootstrap3TranslatedView extends DefaultTranslatedView implements V
      */
     public function __construct(TwitterBootstrap3View $view, TranslatorInterface $translator)
     {
-
         $this->view = $view;
         $this->translator = $translator;
     }
@@ -54,13 +53,12 @@ class TwitterBootstrap3TranslatedView extends DefaultTranslatedView implements V
     public function render(PagerfantaInterface $pagerfanta, $routeGenerator, array $options = array())
     {
         if (!isset($options['prev_message'])) {
-            $options['prev_message'] = '&larr; ' . $this->translator->trans('previous', array(), 'pagerfanta');
+            $options['prev_message'] = '&larr; '.$this->translator->trans('previous', array(), 'pagerfanta');
         }
         if (!isset($options['next_message'])) {
-            $options['next_message'] = $this->translator->trans('next', array(), 'pagerfanta') . ' &rarr;';
+            $options['next_message'] = $this->translator->trans('next', array(), 'pagerfanta').' &rarr;';
         }
 
         return $this->view->render($pagerfanta, $routeGenerator, $options);
     }
-
 }
