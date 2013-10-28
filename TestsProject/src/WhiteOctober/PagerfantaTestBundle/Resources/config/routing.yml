@@ -1,0 +1,27 @@
+pagerfanta_default_view:
+    path:      /pagerfanta/default-view
+    defaults:  { _controller: WhiteOctoberPagerfantaTestBundle:Pagerfanta:defaultView }
+
+pagerfanta_twitter_bootstrap_view:
+    path:      /pagerfanta/twitter-bootstrap-view
+    defaults:  { _controller: WhiteOctoberPagerfantaTestBundle:Pagerfanta:twitterBootstrapView }
+
+pagerfanta_twitter_bootstrap3_view:
+    path:      /pagerfanta/twitter-bootstrap3-view
+    defaults:  { _controller: WhiteOctoberPagerfantaTestBundle:Pagerfanta:twitterBootstrap3View }
+
+pagerfanta_view_with_options:
+    path:      /pagerfanta/view-with-options
+    defaults:  { _controller: WhiteOctoberPagerfantaTestBundle:Pagerfanta:viewWithOptions }
+
+pagerfanta_default_translated_view:
+    path:      /pagerfanta/default-translated-view
+    defaults:  { _controller: WhiteOctoberPagerfantaTestBundle:Pagerfanta:defaultTranslatedView }
+
+pagerfanta_twitter_bootstrap_translated_view:
+    path:      /pagerfanta/twitter-bootstrap-translated-view
+    defaults:  { _controller: WhiteOctoberPagerfantaTestBundle:Pagerfanta:twitterBootstrapTranslatedView }
+
+pagerfanta_twitter_bootstrap3_translated_view:
+    path:      /pagerfanta/twitter-bootstrap3-translated-view
+    defaults:  { _controller: WhiteOctoberPagerfantaTestBundle:Pagerfanta:twitterBootstrap3TranslatedView }

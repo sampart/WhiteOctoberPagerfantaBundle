@@ -1,0 +1,2 @@
+white_october_pagerfanta_test_bundle:
+    resource: "@WhiteOctoberPagerfantaTestBundle/Resources/config/routing.yml"

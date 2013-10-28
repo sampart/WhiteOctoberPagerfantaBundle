@@ -1,4 +1,6 @@
 composer.lock
 Guardfile
 phpunit.xml
+/TestsProject/app/cache/
+/TestsProject/app/log/
 /vendor/
