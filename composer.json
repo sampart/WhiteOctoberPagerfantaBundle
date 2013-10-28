@@ -11,12 +11,13 @@
         }
     ],
     "require": {
-        "symfony/framework-bundle": "~2.1",
+        "symfony/framework-bundle": "~2.2",
+        "symfony/twig-bundle": "~2.2",
         "symfony/property-access": "~2.2",
         "pagerfanta/pagerfanta": "1.0.*"
     },
     "require-dev": {
-        "symfony/symfony": "~2.1"
+        "symfony/symfony": "~2.2"
     },
     "autoload": {
         "psr-0": { "WhiteOctober\\PagerfantaBundle": "" }

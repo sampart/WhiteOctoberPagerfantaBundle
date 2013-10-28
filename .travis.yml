@@ -4,7 +4,12 @@ php:
   - 5.3
   - 5.4
 
+env:
+  - SYMFONY_VERSION=2.2.*
+  - SYMFONY_VERSION=2.3.*
+
 before_script:
+  - composer require symfony/symfony:${SYMFONY_VERSION} --dev --no-update
   - composer install --dev
 
 script: php tests.php
