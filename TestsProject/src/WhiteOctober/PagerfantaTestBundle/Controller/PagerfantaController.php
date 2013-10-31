@@ -49,6 +49,11 @@ class PagerfantaController extends Controller
         return $this->renderPagerfanta('twitterBootstrap3TranslatedView');
     }
 
+    public function myView1Action()
+    {
+        return $this->renderPagerfanta('myView1');
+    }
+
     private function renderPagerfanta($name)
     {
         $template = $this->buildTemplateName($name);

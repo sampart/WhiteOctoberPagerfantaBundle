@@ -142,6 +142,24 @@ EOF
         );
     }
 
+    public function testMyView1()
+    {
+        $this->assertView('my-view-1', <<<EOF
+<nav>
+    <span class="disabled">Anterior</span>
+    <span class="current">1</span>
+    <a href="/pagerfanta/my-view-1?page=2">2</a>
+    <a href="/pagerfanta/my-view-1?page=3">3</a>
+    <a href="/pagerfanta/my-view-1?page=4">4</a>
+    <a href="/pagerfanta/my-view-1?page=5">5</a>
+    <span class="dots">...</span>
+    <a href="/pagerfanta/my-view-1?page=10">10</a>
+    <a href="/pagerfanta/my-view-1?page=2">Siguiente</a>
+</nav>
+EOF
+        );
+    }
+
     private function assertView($view, $html)
     {
         $client = static::createClient();
