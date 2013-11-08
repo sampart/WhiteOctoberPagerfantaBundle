@@ -11,11 +11,6 @@
 
 namespace WhiteOctober\PagerfantaBundle\View;
 
-use Pagerfanta\PagerfantaInterface;
-use Pagerfanta\View\DefaultView;
-use Pagerfanta\View\ViewInterface;
-use Symfony\Component\Translation\TranslatorInterface;
-
 /**
  * Translated view.
  *

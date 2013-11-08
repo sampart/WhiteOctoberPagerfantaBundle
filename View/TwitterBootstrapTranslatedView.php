@@ -11,11 +11,6 @@
 
 namespace WhiteOctober\PagerfantaBundle\View;
 
-use Pagerfanta\PagerfantaInterface;
-use Pagerfanta\View\TwitterBootstrapView;
-use Pagerfanta\View\ViewInterface;
-use Symfony\Component\Translation\TranslatorInterface;
-
 /**
  * This view renders the twitter bootstrap view with texts translated.
  *

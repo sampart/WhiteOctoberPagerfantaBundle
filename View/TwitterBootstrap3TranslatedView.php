@@ -11,12 +11,6 @@
 
 namespace WhiteOctober\PagerfantaBundle\View;
 
-use WhiteOctober\PagerfantaBundle\View\DefaultTranslatedView;
-use Pagerfanta\View\TwitterBootstrap3View;
-use Symfony\Component\Translation\TranslatorInterface;
-use Pagerfanta\View\ViewInterface;
-use Pagerfanta\PagerfantaInterface;
-
 /**
  * TwitterBootstrap3TranslatedView
  *
