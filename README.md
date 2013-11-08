@@ -1,6 +1,6 @@
 # WhiteOctoberPagerfantaBundle
 
-[![Build Status](https://travis-ci.org/whiteoctober/WhiteOctoberPagerfantaBundle.png?branch=master)](https://travis-ci.org/whiteoctober/WhiteOctoberPagerfantaBundle) [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/whiteoctober/WhiteOctoberPagerfantaBundle/badges/quality-score.png?s=5bbc990b8c05b7dcc69cd0cfe7d8d46e9944c530)](https://scrutinizer-ci.com/g/whiteoctober/WhiteOctoberPagerfantaBundle/)
+[![Build Status](https://travis-ci.org/whiteoctober/WhiteOctoberPagerfantaBundle.png?branch=master)](https://travis-ci.org/whiteoctober/WhiteOctoberPagerfantaBundle) [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/whiteoctober/WhiteOctoberPagerfantaBundle/badges/quality-score.png?s=5bbc990b8c05b7dcc69cd0cfe7d8d46e9944c530)](https://scrutinizer-ci.com/g/whiteoctober/WhiteOctoberPagerfantaBundle/) [![SensioLabsInsight](https://insight.sensiolabs.com/projects/e0838383-1c8d-406f-9874-a76c08b7d217/mini.png)](https://insight.sensiolabs.com/projects/e0838383-1c8d-406f-9874-a76c08b7d217)
 
 Bundle to use [Pagerfanta](https://github.com/whiteoctober/Pagerfanta) with [Symfony2](https://github.com/symfony/symfony).
 
