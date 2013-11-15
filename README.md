@@ -143,6 +143,11 @@ create your own view.
 
     <link rel="stylesheet" href="{{ asset('bundles/whiteoctoberpagerfanta/css/pagerfantaDefault.css') }}" type="text/css" media="all" />
 
+More information
+----------------
+
+For more advanced documentation, check the [Pagerfanta documentation](https://github.com/whiteoctober/Pagerfanta/blob/master/README.md).
+
 Author
 ------
 
