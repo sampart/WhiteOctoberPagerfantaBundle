@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class PagerfantaControllerTest extends WebTestCase
 {
+
     public function testDefaultView()
     {
         $this->assertView('default-view', <<<EOF
@@ -158,6 +159,67 @@ EOF
 </nav>
 EOF
         );
+    }
+
+    /**
+     * @test
+     */
+    public function testOutOfRangeException()
+    {
+        $client = static::createClient();
+        $client->request('GET', $this->buildViewUrl('custom-page?currentPage=51'));
+
+        $response = $client->getResponse();
+        $this->assertSame(500, $response->getStatusCode());
+    }
+
+    /**
+     * @test
+     */
+    public function testWrongMaxPerPageException()
+    {
+        $client = static::createClient();
+        $client->request('GET', $this->buildViewUrl('custom-page?maxPerPage=invalid'));
+
+        $response = $client->getResponse();
+        $this->assertSame(500, $response->getStatusCode());
+    }
+
+    /**
+     * @test
+     */
+    public function testOutOfRange404Exception()
+    {
+        $client = static::createClient(array('environment' => 'test_convert_exceptions'));
+
+        $client->request('GET', $this->buildViewUrl('custom-page?currentPage=51'));
+
+        $response = $client->getResponse();
+        $this->assertSame(404, $response->getStatusCode());
+    }
+
+    /**
+     * @test
+     */
+    public function testWrongMaxPerPage404Exception()
+    {
+        $client = static::createClient(array('environment' => 'test_convert_exceptions'));
+        $client->request('GET', $this->buildViewUrl('custom-page?maxPerPage=invalid'));
+
+        $response = $client->getResponse();
+        $this->assertSame(404, $response->getStatusCode());
+    }
+
+    /**
+     * @test
+     */
+    public function testCorrectMaxPerPageAndCurrentPage()
+    {
+        $client = static::createClient();
+        $client->request('GET', $this->buildViewUrl('custom-page?maxPerPage=10&currentPage=1'));
+
+        $response = $client->getResponse();
+        $this->assertSame(200, $response->getStatusCode());
     }
 
     private function assertView($view, $html)

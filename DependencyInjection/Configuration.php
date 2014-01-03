@@ -21,6 +21,10 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  */
 class Configuration implements ConfigurationInterface
 {
+    const EXCEPTION_STRATEGY_NONE = false;
+
+    const EXCEPTION_STRATEGY_TO_HTTP_NOT_FOUND = 'to_http_not_found';
+
     /**
      * Generates the configuration tree builder.
      *
@@ -34,8 +38,13 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->scalarNode('default_view')->defaultValue('default')->end()
-                ->booleanNode('convert_not_valid_max_per_page_to_not_found')->defaultFalse()->end()
-                ->booleanNode('convert_not_valid_current_page_to_not_found')->defaultFalse()->end()
+                ->arrayNode('exceptions_strategy')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->scalarNode('out_of_range_page')->defaultValue(self::EXCEPTION_STRATEGY_NONE)->end()
+                        ->scalarNode('not_valid_current_page')->defaultValue(self::EXCEPTION_STRATEGY_NONE)->end()
+                    ->end()
+                ->end()
             ->end();
 
         return $treeBuilder;

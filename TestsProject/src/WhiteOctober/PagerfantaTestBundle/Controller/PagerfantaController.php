@@ -5,6 +5,7 @@ namespace WhiteOctober\PagerfantaTestBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\FixedAdapter;
+use Symfony\Component\HttpFoundation\Request;
 
 class PagerfantaController extends Controller
 {
@@ -52,6 +53,18 @@ class PagerfantaController extends Controller
     public function myView1Action()
     {
         return $this->renderPagerfanta('myView1');
+    }
+
+    public function defaultWithRequestAction(Request $request)
+    {
+        $template = $this->buildTemplateName('defaultView');
+        $pagerfanta = $this->createPagerfanta();
+        $pagerfanta->setMaxPerPage($request->query->get('maxPerPage', 10));
+        $pagerfanta->setCurrentPage($request->query->get('currentPage', 1));
+
+        return $this->render($template, array(
+            'pagerfanta' => $pagerfanta,
+        ));
     }
 
     private function renderPagerfanta($name)
