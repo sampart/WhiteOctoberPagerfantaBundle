@@ -41,8 +41,9 @@ It is set to "false" by defauly to provide BC (before it was 500).
 
     // app/config/config.yml
     white_october_pagerfanta:
-        convert_not_valid_max_per_page_to_not_found: true
-        convert_not_valid_current_page_to_not_found: true
+        exceptions_strategy:
+            out_of_range_page:        to_http_not_found
+            not_valid_current_page:   to_http_not_found
 
 Rendering pagerfantas
 ---------------------

@@ -163,35 +163,60 @@ EOF
 
     /**
      * @test
-     *
-     * @expectedException \Pagerfanta\Exception\OutOfRangeCurrentPageException
-     * @expectedExceptionMessage Page "51" does not exist. The currentPage must be inferior to "10"
      */
     public function testOutOfRangeException()
     {
         $client = static::createClient();
         $client->request('GET', $this->buildViewUrl('custom-page?currentPage=51'));
+
+        $response = $client->getResponse();
+        $this->assertSame(500, $response->getStatusCode());
     }
 
     /**
      * @test
-     *
-     * @expectedException \Pagerfanta\Exception\LessThan1MaxPerPageException
      */
     public function testWrongMaxPerPageException()
     {
         $client = static::createClient();
         $client->request('GET', $this->buildViewUrl('custom-page?maxPerPage=invalid'));
+
+        $response = $client->getResponse();
+        $this->assertSame(500, $response->getStatusCode());
     }
 
     /**
      * @test
-     *
+     */
+    public function testOutOfRange404Exception()
+    {
+        $client = static::createClient(array('environment' => 'test_convert_exceptions'));
+
+        $client->request('GET', $this->buildViewUrl('custom-page?currentPage=51'));
+
+        $response = $client->getResponse();
+        $this->assertSame(404, $response->getStatusCode());
+    }
+
+    /**
+     * @test
+     */
+    public function testWrongMaxPerPage404Exception()
+    {
+        $client = static::createClient(array('environment' => 'test_convert_exceptions'));
+        $client->request('GET', $this->buildViewUrl('custom-page?maxPerPage=invalid'));
+
+        $response = $client->getResponse();
+        $this->assertSame(404, $response->getStatusCode());
+    }
+
+    /**
+     * @test
      */
     public function testCorrectMaxPerPageAndCurrentPage()
     {
         $client = static::createClient();
-        $client->request('GET', $this->buildViewUrl('custom-page?maxPerPage=10?currentPage=1'));
+        $client->request('GET', $this->buildViewUrl('custom-page?maxPerPage=10&currentPage=1'));
 
         $response = $client->getResponse();
         $this->assertSame(200, $response->getStatusCode());

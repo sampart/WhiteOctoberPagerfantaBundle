@@ -19,22 +19,10 @@ class AppKernel extends Kernel
         return $bundles;
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param int $type
-     * @param bool $catch
-     *
-     * @return Symfony\Component\HttpFoundation\Response
-     */
-    public function handle(Request $request, $type = HttpKernelInterface::MASTER_REQUEST, $catch = true)
-    {
-        $catch = false;
 
-        return parent::handle($request, $type, $catch);
-    }
 
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
-        $loader->load(__DIR__.'/config.yml');
+        $loader->load(__DIR__.'/config_'.$this->getEnvironment().'.yml');
     }
 }
