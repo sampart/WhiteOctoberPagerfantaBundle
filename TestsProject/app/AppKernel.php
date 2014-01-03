@@ -1,7 +1,5 @@
 <?php
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
@@ -18,8 +16,6 @@ class AppKernel extends Kernel
 
         return $bundles;
     }
-
-
 
     public function registerContainerConfiguration(LoaderInterface $loader)
     {

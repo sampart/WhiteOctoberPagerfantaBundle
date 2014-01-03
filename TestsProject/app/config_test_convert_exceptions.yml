@@ -1,27 +1,7 @@
-framework:
-    secret:         secret
-    router:         { resource: "%kernel.root_dir%/routing.yml" }
-    templating:     { engines: ['twig'] }
-    test:           ~
-    translator:     ~
-    default_locale: en
-    session:
-        storage_id: session.storage.filesystem
-
-twig:
-    debug:            %kernel.debug%
-    strict_variables: %kernel.debug%
+imports:
+    - { resource: config_test.yml }
 
 white_october_pagerfanta:
     exceptions_strategy:
         out_of_range_page:        to_http_not_found
         not_valid_current_page:   to_http_not_found
-
-services:
-    pagerfanta.view.my_view_1:
-        class: Pagerfanta\View\OptionableView
-        arguments:
-            - @pagerfanta.view.default
-            - { proximity: 2, previous_message: Anterior, next_message: Siguiente }
-        public: false
-        tags: [{ name: pagerfanta.view, alias: my_view_1 }]
