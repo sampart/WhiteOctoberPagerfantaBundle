@@ -40,5 +40,15 @@ class WhiteOctoberPagerfantaExtension extends Extension
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('pagerfanta.xml');
+
+        if ($config['exceptions_strategy']['out_of_range_page'] == Configuration::EXCEPTION_STRATEGY_TO_HTTP_NOT_FOUND) {
+            $convertListener = $container->getDefinition('pagerfanta.convert_not_valid_max_per_page_to_not_found_listener');
+            $convertListener->addTag('kernel.event_subscriber');
+        }
+
+        if ($config['exceptions_strategy']['not_valid_current_page'] == Configuration::EXCEPTION_STRATEGY_TO_HTTP_NOT_FOUND) {
+            $convertListener = $container->getDefinition('pagerfanta.convert_not_valid_current_page_to_not_found_listener');
+            $convertListener->addTag('kernel.event_subscriber');
+        }
     }
 }

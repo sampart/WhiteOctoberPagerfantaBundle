@@ -29,3 +29,7 @@ pagerfanta_twitter_bootstrap3_translated_view:
 pagerfanta_my_view_1:
     path:      /pagerfanta/my-view-1
     defaults:  { _controller: WhiteOctoberPagerfantaTestBundle:Pagerfanta:myView1 }
+
+pagerfanta_correct_view:
+    path:      /pagerfanta/custom-page
+    defaults:  { _controller: WhiteOctoberPagerfantaTestBundle:Pagerfanta:defaultWithRequest }

@@ -36,6 +36,15 @@ Then add the WhiteOctoberPagerfantaBundle to your application kernel:
         );
     }
 
+Right now when the page is out of range or not a number the server returns 500. You can set the parameter to show 404 exception when requested page is not valid.
+It is set to "false" by defauly to provide BC (before it was 500).
+
+    // app/config/config.yml
+    white_october_pagerfanta:
+        exceptions_strategy:
+            out_of_range_page:        to_http_not_found
+            not_valid_current_page:   to_http_not_found
+
 Rendering pagerfantas
 ---------------------
 
