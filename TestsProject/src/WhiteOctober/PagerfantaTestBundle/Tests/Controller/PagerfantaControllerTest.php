@@ -164,7 +164,7 @@ EOF
     /**
      * @test
      */
-    public function testOutOfRangeException()
+    public function testOutOfRangeExceptionWithNoneStrategy()
     {
         $client = static::createClient();
         $client->request('GET', $this->buildViewUrl('custom-page?currentPage=51'));
@@ -176,7 +176,7 @@ EOF
     /**
      * @test
      */
-    public function testWrongMaxPerPageException()
+    public function testWrongMaxPerPageExceptionWithNoneStrategy()
     {
         $client = static::createClient();
         $client->request('GET', $this->buildViewUrl('custom-page?maxPerPage=invalid'));
@@ -188,7 +188,7 @@ EOF
     /**
      * @test
      */
-    public function testOutOfRange404Exception()
+    public function testOutOfRangeExceptionWithToHttpNotFoundStrategy()
     {
         $client = static::createClient(array('environment' => 'test_convert_exceptions'));
 
@@ -201,7 +201,7 @@ EOF
     /**
      * @test
      */
-    public function testWrongMaxPerPage404Exception()
+    public function testWrongMaxPerPageExceptionWithToHttpNotFoundStrategy()
     {
         $client = static::createClient(array('environment' => 'test_convert_exceptions'));
         $client->request('GET', $this->buildViewUrl('custom-page?maxPerPage=invalid'));
@@ -213,7 +213,7 @@ EOF
     /**
      * @test
      */
-    public function testCorrectMaxPerPageAndCurrentPage()
+    public function testCorrectMaxPerPageAndCurrentPageWithNoneStrategy()
     {
         $client = static::createClient();
         $client->request('GET', $this->buildViewUrl('custom-page?maxPerPage=10&currentPage=1'));
