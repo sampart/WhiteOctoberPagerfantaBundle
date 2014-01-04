@@ -11,10 +11,11 @@
 
 namespace WhiteOctober\PagerfantaBundle\Twig;
 
+use Pagerfanta\View\ViewFactoryInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\PropertyAccess\PropertyPath;
-use Symfony\Component\PropertyAccess\PropertyAccess;
+use Symfony\Component\HttpFoundation\Request;
 use Pagerfanta\PagerfantaInterface;
+use WhiteOctober\PagerfantaBundle\Routing\PagerfantaRouteGeneratorCreator;
 
 /**
  * PagerfantaExtension.
@@ -23,16 +24,17 @@ use Pagerfanta\PagerfantaInterface;
  */
 class PagerfantaExtension extends \Twig_Extension
 {
+    private $routeGeneratorCreator;
+    private $viewFactory;
+    private $defaultView;
     private $container;
 
-    /**
-     * Constructor.
-     *
-     * @param ContainerInterface $container A container.
-     */
-    public function __construct(ContainerInterface $container)
+    public function __construct(PagerfantaRouteGeneratorCreator $routeGeneratorCreator, ViewFactoryInterface $viewFactory, $defaultView, ContainerInterface $container)
     {
-        $this->container = $container;
+        $this->routeGeneratorCreator = $routeGeneratorCreator;
+        $this->viewFactory = $viewFactory;
+        $this->defaultView = $defaultView;
+        $this->container = $container; // hack for not being able to inject the request
     }
 
     /**
@@ -57,13 +59,10 @@ class PagerfantaExtension extends \Twig_Extension
      */
     public function renderPagerfanta(PagerfantaInterface $pagerfanta, $viewName = null, array $options = array())
     {
-        if (null === $viewName) {
-            $viewName = $this->container->getParameter('white_october_pagerfanta.default_view');
-        }
-
+        $view = $viewName ?: $this->defaultView;
         $routeGenerator = $this->createRouteGenerator($options);
 
-        return $this->container->get('white_october_pagerfanta.view_factory')->get($viewName)->render($pagerfanta, $routeGenerator, $options);
+        return $this->viewFactory->get($view)->render($pagerfanta, $routeGenerator, $options);
     }
 
     /**
@@ -100,16 +99,14 @@ class PagerfantaExtension extends \Twig_Extension
     private function createRouteGenerator($options = array())
     {
         $options = array_replace(array(
-                'routeName'     => null,
-                'routeParams'   => array(),
-                'pageParameter' => '[page]',
-            ), $options);
+            'routeName'     => null,
+            'routeParams'   => array(),
+            'pageParameter' => '[page]',
+        ), $options);
 
-        $router = $this->container->get('router');
+        $request = $this->getRequest();
 
         if (null === $options['routeName']) {
-            $request = $this->container->get('request');
-
             $options['routeName'] = $request->attributes->get('_route');
             if ('_internal' === $options['routeName']) {
                 throw new \Exception('PagerfantaBundle can not guess the route when used in a subrequest');
@@ -118,16 +115,13 @@ class PagerfantaExtension extends \Twig_Extension
             $options['routeParams'] = array_merge($request->query->all(), $request->attributes->get('_route_params'));
         }
 
-        $routeName = $options['routeName'];
-        $routeParams = $options['routeParams'];
-        $pagePropertyPath = new PropertyPath($options['pageParameter']);
+        return $this->routeGeneratorCreator->create($options['routeName'], $options['routeParams'], $options['pageParameter']);
+    }
 
-        return function($page) use($router, $routeName, $routeParams, $pagePropertyPath) {
-            $propertyAccessor = PropertyAccess::getPropertyAccessor();
-            $propertyAccessor->setValue($routeParams, $pagePropertyPath, $page);
-
-            return $router->generate($routeName, $routeParams);
-        };
+    /** @return Request */
+    private function getRequest()
+    {
+        return $this->container->get('request');
     }
 
     /**
