@@ -55,6 +55,12 @@ class PagerfantaController extends Controller
         return $this->renderPagerfanta('myView1');
     }
 
+
+    public function viewWithRouteParamsAction($test = null)
+    {
+        return $this->renderPagerfanta('viewWithRouteParams');
+    }
+
     public function defaultWithRequestAction(Request $request)
     {
         $template = $this->buildTemplateName('defaultView');
@@ -73,8 +79,9 @@ class PagerfantaController extends Controller
         $pagerfanta = $this->createPagerfanta();
 
         return $this->render($template, array(
-            'pagerfanta' => $pagerfanta,
+            'pagerfanta' => $pagerfanta
         ));
+
     }
 
     private function buildTemplateName($name)

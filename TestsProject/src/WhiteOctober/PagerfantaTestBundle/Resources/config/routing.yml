@@ -14,6 +14,11 @@ pagerfanta_view_with_options:
     path:      /pagerfanta/view-with-options
     defaults:  { _controller: WhiteOctoberPagerfantaTestBundle:Pagerfanta:viewWithOptions }
 
+pagerfanta_view_with_route_params:
+    path:      /pagerfanta/view-with-route-params
+    defaults:  { _controller: WhiteOctoberPagerfantaTestBundle:Pagerfanta:viewWithRouteParams }
+
+
 pagerfanta_default_translated_view:
     path:      /pagerfanta/default-translated-view
     defaults:  { _controller: WhiteOctoberPagerfantaTestBundle:Pagerfanta:defaultTranslatedView }

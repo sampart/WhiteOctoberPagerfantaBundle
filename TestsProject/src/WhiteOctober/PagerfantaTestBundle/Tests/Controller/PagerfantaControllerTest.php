@@ -161,6 +161,24 @@ EOF
         );
     }
 
+    public function testViewWithRouteParams()
+    {
+        $this->assertView('view-with-route-params', <<<EOF
+<nav>
+    <span class="disabled">Previous</span>
+    <span class="current">1</span>
+    <a href="/pagerfanta/view-with-route-params?test=im-a-test&page=2">2</a>
+    <a href="/pagerfanta/view-with-route-params?test=im-a-test&page=3">3</a>
+    <a href="/pagerfanta/view-with-route-params?test=im-a-test&page=4">4</a>
+    <a href="/pagerfanta/view-with-route-params?test=im-a-test&page=5">5</a>
+    <span class="dots">...</span><a href="/pagerfanta/view-with-route-params?test=im-a-test&page=10">10</a>
+    <a href="/pagerfanta/view-with-route-params?test=im-a-test&page=2">Next</a>
+</nav>
+EOF
+);
+
+    }
+
     /**
      * @test
      */
