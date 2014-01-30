@@ -58,7 +58,24 @@ The routes are generated automatically for the current route using the variable
         {{ pagerfanta(my_pager) }}
     </div>
 
-The bundle also has the *TwitterBootstrapView* with the *twitter_bootstrap* name.
+### Twitter Bootstrap
+
+The bundle also has TwitterBootstrapView.
+
+For Bootstrap 2:
+
+    <div class="pagerfanta">
+        {{ pagerfanta(my_pager, 'twitter_bootstrap') }}
+    </div>
+
+For Bootstrap 3:
+
+    <div class="pagerfanta">
+        {{ pagerfanta(my_pager, 'twitter_bootstrap3') }}
+    </div>
+
+### Custom template
+
 
 If you want to use a custom template, add another argument
 
