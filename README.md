@@ -16,47 +16,64 @@ The bundle includes:
 Installation
 ------------
 
-Add the bundle to your `composer.json`:
+1) Use [Composer](https://getcomposer.org/) to download the library
 
-    "white-october/pagerfanta-bundle": "dev-master"
+```
+php composer.phar require white-october/pagerfanta-bundle
+```
 
-and run:
+2) Then add the WhiteOctoberPagerfantaBundle to your application kernel:
 
-    php composer.phar install
+```php
+// app/AppKernel.php
+public function registerBundles()
+{
+    return array(
+        // ...
+        new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
+        // ...
+    );
+}
+```
 
-Then add the WhiteOctoberPagerfantaBundle to your application kernel:
+3) Configure and use things!
 
-    // app/AppKernel.php
-    public function registerBundles()
-    {
-        return array(
-            // ...
-            new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
-            // ...
-        );
-    }
+A) **Creating a Pager** is shown on the [Pagerfanta](https://github.com/whiteoctober/Pagerfanta) documentation. If you're using the Doctrine ORM, you'll want to use the [DoctrineORMAdapter](https://github.com/whiteoctober/Pagerfanta#doctrineormadapter)
 
-Right now when the page is out of range or not a number the server returns 500. You can set the parameter to show 404 exception when requested page is not valid.
-It is set to "false" by defauly to provide BC (before it was 500).
+B) **Rendering in Twig** is shown below in the [Rendering pagerfantas](#rendering-pagerfantas) section.
 
-    // app/config/config.yml
-    white_october_pagerfanta:
-        exceptions_strategy:
-            out_of_range_page:        to_http_not_found
-            not_valid_current_page:   to_http_not_found
+C) **Configuration** is shown through this document
+
+Making Bad Page Numbers Return a 404
+------------------------------------
+
+Right now when the page is out of range or not a number, the server returns a 500 response. You can set the following parameter to show a 404 exception when the requested page is not valid instead.
+It is set to "false" by defauly to provide backwards-compatibility (before it was 500).
+
+```yml
+// app/config/config.yml
+white_october_pagerfanta:
+    exceptions_strategy:
+        out_of_range_page:        to_http_not_found
+        not_valid_current_page:   to_http_not_found
+```
 
 Rendering pagerfantas
 ---------------------
 
+```twig
     {{ pagerfanta(my_pager, view_name, view_options) }}
+```
 
 The routes are generated automatically for the current route using the variable
 "page" to propagate the page number. By default, the bundle uses the
 *DefaultView* with the *default* name. The default syntax is:
 
-    <div class="pagerfanta">
-        {{ pagerfanta(my_pager) }}
-    </div>
+```twig
+<div class="pagerfanta">
+    {{ pagerfanta(my_pager) }}
+</div>
+```
 
 ### Twitter Bootstrap
 
@@ -64,28 +81,36 @@ The bundle also has TwitterBootstrapView.
 
 For Bootstrap 2:
 
-    <div class="pagerfanta">
-        {{ pagerfanta(my_pager, 'twitter_bootstrap') }}
-    </div>
+```twig
+<div class="pagerfanta">
+    {{ pagerfanta(my_pager, 'twitter_bootstrap') }}
+</div>
+```
 
 For Bootstrap 3:
 
-    <div class="pagerfanta">
-        {{ pagerfanta(my_pager, 'twitter_bootstrap3') }}
-    </div>
+```twig
+<div class="pagerfanta">
+    {{ pagerfanta(my_pager, 'twitter_bootstrap3') }}
+</div>
+```
 
 ### Custom template
 
 
 If you want to use a custom template, add another argument
 
-    <div class="pagerfanta">
-        {{ pagerfanta(my_pager, 'my_template') }}
-    </div>
+```twig
+<div class="pagerfanta">
+    {{ pagerfanta(my_pager, 'my_template') }}
+</div>
+```
 
 With Options
 
-    {{ pagerfanta(my_pager, 'default', { 'proximity': 2}) }}
+```twig
+{{ pagerfanta(my_pager, 'default', { 'proximity': 2}) }}
+```
 
 See the Pagerfanta documentation for the list of the parameters.
 
@@ -95,9 +120,11 @@ Translate in your language
 The bundle also offers two views to translate the *default* and the
 *twitter bootstrap* views.
 
-    {{ pagerfanta(pagerfanta, 'default_translated') }}
+```twig
+{{ pagerfanta(pagerfanta, 'default_translated') }}
 
-    {{ pagerfanta(pagerfanta, 'twitter_bootstrap_translated') }}
+{{ pagerfanta(pagerfanta, 'twitter_bootstrap_translated') }}
+```
 
 Adding Views
 ------------
@@ -106,17 +133,21 @@ The views are added to the container with the *pagerfanta.view* tag:
 
 XML
 
-    <service id="pagerfanta.view.default" class="Pagerfanta\View\DefaultView" public="false">
-        <tag name="pagerfanta.view" alias="default" />
-    </service>
+```xml
+<service id="pagerfanta.view.default" class="Pagerfanta\View\DefaultView" public="false">
+    <tag name="pagerfanta.view" alias="default" />
+</service>
+```
 
 YAML
 
-    services:
-        pagerfanta.view.default:
-            class: Pagerfanta\View\DefaultView
-            public: false
-            tags: [{ name: pagerfanta.view, alias: default }]
+```yml
+services:
+    pagerfanta.view.default:
+        class: Pagerfanta\View\DefaultView
+        public: false
+        tags: [{ name: pagerfanta.view, alias: default }]
+```
 
 Reusing Options
 ---------------
@@ -128,26 +159,30 @@ change them easily.
 
 For this you have to define views with the special view *OptionableView*:
 
-    services:
-        pagerfanta.view.my_view_1:
-            class: Pagerfanta\View\OptionableView
-            arguments:
-                - @pagerfanta.view.default
-                - { proximity: 2, previous_message: Anterior, next_message: Siguiente }
-            public: false
-            tags: [{ name: pagerfanta.view, alias: my_view_1 }]
-        pagerfanta.view.my_view_2:
-            class: Pagerfanta\View\OptionableView
-            arguments:
-                - @pagerfanta.view.default
-                - { proximity: 5 }
-            public: false
-            tags: [{ name: pagerfanta.view, alias: my_view_2 }]
+```yml
+services:
+    pagerfanta.view.my_view_1:
+        class: Pagerfanta\View\OptionableView
+        arguments:
+            - @pagerfanta.view.default
+            - { proximity: 2, previous_message: Anterior, next_message: Siguiente }
+        public: false
+        tags: [{ name: pagerfanta.view, alias: my_view_1 }]
+    pagerfanta.view.my_view_2:
+        class: Pagerfanta\View\OptionableView
+        arguments:
+            - @pagerfanta.view.default
+            - { proximity: 5 }
+        public: false
+        tags: [{ name: pagerfanta.view, alias: my_view_2 }]
+```
 
 And using then:
 
-    {{ pagerfanta(pagerfanta, 'my_view_1') }}
-    {{ pagerfanta(pagerfanta, 'my_view_2') }}
+```twig
+{{ pagerfanta(pagerfanta, 'my_view_1') }}
+{{ pagerfanta(pagerfanta, 'my_view_2') }}
+```
 
 The easiest way to render pagerfantas (or paginators!) ;)
 
@@ -157,8 +192,10 @@ Configuration
 It's possible to configure the default view for all rendering in your
 configuration file:
 
-    white_october_pagerfanta:
-        default_view: my_view_1
+```yml
+white_october_pagerfanta:
+    default_view: my_view_1
+```
 
 Basic CSS for the default view
 ------------------------------
@@ -167,7 +204,9 @@ The bundles comes with a basic css for the default view to be able to use a
 good paginator faster. Of course you can change it, use another one or
 create your own view.
 
-    <link rel="stylesheet" href="{{ asset('bundles/whiteoctoberpagerfanta/css/pagerfantaDefault.css') }}" type="text/css" media="all" />
+```html
+<link rel="stylesheet" href="{{ asset('bundles/whiteoctoberpagerfanta/css/pagerfantaDefault.css') }}" type="text/css" media="all" />
+```
 
 More information
 ----------------
