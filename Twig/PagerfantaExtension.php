@@ -116,7 +116,7 @@ class PagerfantaExtension extends \Twig_Extension
             }
             
             // make sure we read the route parameters from the passed option array            
-            $defaultRouteParams = array_merge($request->query->all(), $request->attributes->get('_route_params'));
+            $defaultRouteParams = array_merge($request->query->all(), $request->attributes->get('_route_params', array()));
 
             if (array_key_exists('routeParams', $options)) {
                 $options['routeParams'] = array_merge($defaultRouteParams, $options['routeParams']);
