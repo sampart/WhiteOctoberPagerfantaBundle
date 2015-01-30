@@ -30,15 +30,15 @@ EOF
         $this->assertView('twitter-bootstrap-view', <<<EOF
 <div class="pagination">
     <ul>
-        <li class="prev disabled"><a href="#">&larr; Previous</a></li>
-        <li class="active"><a href="/pagerfanta/twitter-bootstrap-view?page=1">1</a></li>
+        <li class="prev disabled"><span>&larr; Previous</span></li>
+        <li class="active"><span>1</span></li>
         <li><a href="/pagerfanta/twitter-bootstrap-view?page=2">2</a></li>
         <li><a href="/pagerfanta/twitter-bootstrap-view?page=3">3</a></li>
         <li><a href="/pagerfanta/twitter-bootstrap-view?page=4">4</a></li>
         <li><a href="/pagerfanta/twitter-bootstrap-view?page=5">5</a></li>
         <li><a href="/pagerfanta/twitter-bootstrap-view?page=6">6</a></li>
         <li><a href="/pagerfanta/twitter-bootstrap-view?page=7">7</a></li>
-        <li class="disabled"><a href="#">&hellip;</a></li>
+        <li class="disabled"><span>&hellip;</span></li>
         <li><a href="/pagerfanta/twitter-bootstrap-view?page=10">10</a></li>
         <li class="next"><a href="/pagerfanta/twitter-bootstrap-view?page=2">Next &rarr;</a></li>
     </ul>
@@ -51,15 +51,15 @@ EOF
     {
         $this->assertView('twitter-bootstrap3-view', <<<EOF
 <ul class="pagination">
-    <li class="prev disabled"><a href="#">&larr; Previous</a></li>
-    <li class="active"><a href="/pagerfanta/twitter-bootstrap3-view?page=1">1</a></li>
+    <li class="prev disabled"><span>&larr; Previous</span></li>
+    <li class="active"><span>1 <span class="sr-only">(current)</span></span></li>
     <li><a href="/pagerfanta/twitter-bootstrap3-view?page=2">2</a></li>
     <li><a href="/pagerfanta/twitter-bootstrap3-view?page=3">3</a></li>
     <li><a href="/pagerfanta/twitter-bootstrap3-view?page=4">4</a></li>
     <li><a href="/pagerfanta/twitter-bootstrap3-view?page=5">5</a></li>
     <li><a href="/pagerfanta/twitter-bootstrap3-view?page=6">6</a></li>
     <li><a href="/pagerfanta/twitter-bootstrap3-view?page=7">7</a></li>
-    <li class="disabled"><a href="#">&hellip;</a></li>
+    <li class="disabled"><span>&hellip;</span></li>
     <li><a href="/pagerfanta/twitter-bootstrap3-view?page=10">10</a></li>
     <li class="next"><a href="/pagerfanta/twitter-bootstrap3-view?page=2">Next &rarr;</a></li>
 </ul>
@@ -106,15 +106,15 @@ EOF
         $this->assertView('twitter-bootstrap-translated-view', <<<EOF
 <div class="pagination">
     <ul>
-        <li class="prev disabled"><a href="#">&larr; Anterior</a></li>
-        <li class="active"><a href="/pagerfanta/twitter-bootstrap-translated-view?page=1">1</a></li>
+        <li class="prev disabled"><span>&larr; Anterior</span></li>
+        <li class="active"><span>1</span></li>
         <li><a href="/pagerfanta/twitter-bootstrap-translated-view?page=2">2</a></li>
         <li><a href="/pagerfanta/twitter-bootstrap-translated-view?page=3">3</a></li>
         <li><a href="/pagerfanta/twitter-bootstrap-translated-view?page=4">4</a></li>
         <li><a href="/pagerfanta/twitter-bootstrap-translated-view?page=5">5</a></li>
         <li><a href="/pagerfanta/twitter-bootstrap-translated-view?page=6">6</a></li>
         <li><a href="/pagerfanta/twitter-bootstrap-translated-view?page=7">7</a></li>
-        <li class="disabled"><a href="#">&hellip;</a></li>
+        <li class="disabled"><span>&hellip;</span></li>
         <li><a href="/pagerfanta/twitter-bootstrap-translated-view?page=10">10</a></li>
         <li class="next"><a href="/pagerfanta/twitter-bootstrap-translated-view?page=2">Siguiente &rarr;</a></li>
     </ul>
@@ -127,15 +127,15 @@ EOF
     {
         $this->assertView('twitter-bootstrap3-translated-view', <<<EOF
 <ul class="pagination">
-    <li class="prev disabled"><a href="#">&larr; Anterior</a></li>
-    <li class="active"><a href="/pagerfanta/twitter-bootstrap3-translated-view?page=1">1</a></li>
+    <li class="prev disabled"><span>&larr; Anterior</span></li>
+    <li class="active"><span>1 <span class="sr-only">(current)</span></span></li>
     <li><a href="/pagerfanta/twitter-bootstrap3-translated-view?page=2">2</a></li>
     <li><a href="/pagerfanta/twitter-bootstrap3-translated-view?page=3">3</a></li>
     <li><a href="/pagerfanta/twitter-bootstrap3-translated-view?page=4">4</a></li>
     <li><a href="/pagerfanta/twitter-bootstrap3-translated-view?page=5">5</a></li>
     <li><a href="/pagerfanta/twitter-bootstrap3-translated-view?page=6">6</a></li>
     <li><a href="/pagerfanta/twitter-bootstrap3-translated-view?page=7">7</a></li>
-    <li class="disabled"><a href="#">&hellip;</a></li>
+    <li class="disabled"><span>&hellip;</span></li>
     <li><a href="/pagerfanta/twitter-bootstrap3-translated-view?page=10">10</a></li>
     <li class="next"><a href="/pagerfanta/twitter-bootstrap3-translated-view?page=2">Siguiente &rarr;</a></li>
 </ul>
