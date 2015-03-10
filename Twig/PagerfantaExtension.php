@@ -130,6 +130,7 @@ class PagerfantaExtension extends \Twig_Extension
         $pagePropertyPath = new PropertyPath($options['pageParameter']);
 
         return function($page) use($router, $routeName, $routeParams, $pagePropertyPath) {
+            // getPropertyAccessor method is deprecated since version 2.3, to be removed in 3.0
             $propertyAccessor = PropertyAccess::getPropertyAccessor();
             $propertyAccessor->setValue($routeParams, $pagePropertyPath, $page);
 

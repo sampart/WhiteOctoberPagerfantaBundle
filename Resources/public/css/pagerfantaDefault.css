@@ -31,26 +31,3 @@
     border-color: #ccf;
     color: #ccf;
 }
-
-/*
-
-.pagerfanta a,
-.pagerfanta span {
-    border-color: blue;
-    color: blue;
-}
-
-.pagerfanta a:hover {
-    background: #ccf;
-}
-
-.pagerfanta .current {
-    background: #ccf;
-}
-
-.pagerfanta .disabled {
-    border-color: #ccf;
-    color: #cf;
-}
-
-*/

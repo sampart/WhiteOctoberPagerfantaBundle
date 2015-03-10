@@ -32,13 +32,13 @@ class WhiteOctoberPagerfantaExtension extends Extension
      */
     public function load(array $configs, ContainerBuilder $container)
     {
-        $configuration = new Configuration();
-        $processor = new Processor();
+        $configuration  = new Configuration();
+        $processor      = new Processor();
 
         $config = $processor->processConfiguration($configuration, $configs);
         $container->setParameter('white_october_pagerfanta.default_view', $config['default_view']);
 
-        $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('pagerfanta.xml');
 
         if ($config['exceptions_strategy']['out_of_range_page'] == Configuration::EXCEPTION_STRATEGY_TO_HTTP_NOT_FOUND) {
