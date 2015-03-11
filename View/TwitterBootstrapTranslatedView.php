@@ -35,7 +35,7 @@ class TwitterBootstrapTranslatedView extends TranslatedView
     }
 
     /**
-     * @param $text
+     * @param string $text
      *
      * @return string
      */
@@ -45,7 +45,7 @@ class TwitterBootstrapTranslatedView extends TranslatedView
     }
 
     /**
-     * @param $text
+     * @param string $text
      *
      * @return string
      */

@@ -47,11 +47,6 @@ abstract class TranslatedView implements ViewInterface
         return $this->view->render($pagerfanta, $routeGenerator, $optionsWithTranslations);
     }
 
-    /**
-     * @param $options
-     *
-     * @return array
-     */
     private function addTranslationOptions($options)
     {
         return $this->addNextTranslationOption(
@@ -59,11 +54,6 @@ abstract class TranslatedView implements ViewInterface
         );
     }
 
-    /**
-     * @param $options
-     *
-     * @return array
-     */
     private function addPreviousTranslationOption($options)
     {
         $option = $this->previousMessageOption();
@@ -72,11 +62,6 @@ abstract class TranslatedView implements ViewInterface
         return $this->addTranslationOption($options, $option, $messageMethod);
     }
 
-    /**
-     * @param $options
-     *
-     * @return array
-     */
     private function addNextTranslationOption($options)
     {
         $option = $this->nextMessageOption();
@@ -85,13 +70,6 @@ abstract class TranslatedView implements ViewInterface
         return $this->addTranslationOption($options, $option, $messageMethod);
     }
 
-    /**
-     * @param $options
-     * @param $option
-     * @param $messageMethod
-     *
-     * @return array
-     */
     private function addTranslationOption($options, $option, $messageMethod)
     {
         if (isset($options[$option])) {
@@ -107,9 +85,6 @@ abstract class TranslatedView implements ViewInterface
 
     abstract protected function nextMessageOption();
 
-    /**
-     * @return mixed
-     */
     private function previousMessage()
     {
         $previousText = $this->previousText();
@@ -117,9 +92,6 @@ abstract class TranslatedView implements ViewInterface
         return $this->buildPreviousMessage($previousText);
     }
 
-    /**
-     * @return mixed
-     */
     private function nextMessage()
     {
         $nextText = $this->nextText();
@@ -143,17 +115,7 @@ abstract class TranslatedView implements ViewInterface
         return $this->translator->trans('next', array(), 'pagerfanta');
     }
 
-    /**
-     * @param $text
-     *
-     * @return mixed
-     */
     abstract protected function buildPreviousMessage($text);
 
-    /**
-     * @param $text
-     *
-     * @return mixed
-     */
     abstract protected function buildNextMessage($text);
 }

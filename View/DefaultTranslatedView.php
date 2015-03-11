@@ -37,7 +37,7 @@ class DefaultTranslatedView extends TranslatedView
     }
 
     /**
-     * @param $text
+     * @param string $text
      *
      * @return string
      */
@@ -47,7 +47,7 @@ class DefaultTranslatedView extends TranslatedView
     }
 
     /**
-     * @param $text
+     * @param string $text
      *
      * @return string
      */

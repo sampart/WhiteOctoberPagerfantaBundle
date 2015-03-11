@@ -4,4 +4,3 @@ phpunit.xml
 /TestsProject/app/cache/
 /TestsProject/app/log/
 /vendor/
-.idea/
