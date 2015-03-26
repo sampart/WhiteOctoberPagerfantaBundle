@@ -7,6 +7,8 @@
     <parameters>
         <!-- View Factory -->
         <parameter key="white_october_pagerfanta.view_factory.class">Pagerfanta\View\ViewFactory</parameter>
+        <!-- Twig Extension -->
+        <parameter key="white_october_pagerfanta.twig.extension.pagerfanta.class">WhiteOctober\PagerfantaBundle\Twig\PagerfantaExtension</parameter>
     </parameters>
 
     <services>
@@ -53,7 +55,7 @@
         </service>
 
         <!-- Twig Extension -->
-        <service id="twig.extension.pagerfanta" class="WhiteOctober\PagerfantaBundle\Twig\PagerfantaExtension" public="false">
+        <service id="twig.extension.pagerfanta" class="%white_october_pagerfanta.twig.extension.pagerfanta.class%" public="false">
             <tag name="twig.extension" />
             <argument type="service" id="service_container" />
         </service>
