@@ -114,15 +114,15 @@ class PagerfantaExtension extends \Twig_Extension
             if ('_internal' === $options['routeName']) {
                 throw new \Exception('PagerfantaBundle can not guess the route when used in a subrequest');
             }
-            
-            // make sure we read the route parameters from the passed option array            
+
+            // make sure we read the route parameters from the passed option array
             $defaultRouteParams = array_merge($request->query->all(), $request->attributes->get('_route_params', array()));
 
             if (array_key_exists('routeParams', $options)) {
                 $options['routeParams'] = array_merge($defaultRouteParams, $options['routeParams']);
             } else {
                 $options['routeParams'] = $defaultRouteParams;
-            }   
+            }
         }
 
         $routeName = $options['routeName'];
@@ -132,6 +132,12 @@ class PagerfantaExtension extends \Twig_Extension
         return function($page) use($router, $routeName, $routeParams, $pagePropertyPath) {
             $propertyAccessor = PropertyAccess::getPropertyAccessor();
             $propertyAccessor->setValue($routeParams, $pagePropertyPath, $page);
+
+            if ($page > 1) {
+                $propertyAccessor->setValue($routeParams, $pagePropertyPath, $page);
+            } else {
+                $propertyAccessor->setValue($routeParams, $pagePropertyPath, null);
+            }
 
             return $router->generate($routeName, $routeParams);
         };
