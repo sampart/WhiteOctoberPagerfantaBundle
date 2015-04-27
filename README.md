@@ -48,7 +48,7 @@ Making Bad Page Numbers Return a 404
 ------------------------------------
 
 Right now when the page is out of range or not a number, the server returns a 500 response. You can set the following parameter to show a 404 exception when the requested page is not valid instead.
-It is set to "false" by defauly to provide backwards-compatibility (before it was 500).
+It is set to "false" by default to provide backwards-compatibility (before it was 500).
 
 ```yml
 // app/config/config.yml
