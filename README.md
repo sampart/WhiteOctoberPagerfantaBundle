@@ -152,7 +152,7 @@ services:
 Customize buttons labels
 ------------------------
 
-You can costomize label with some HTML code if needed.
+You can customize label with some HTML code if needed.
 
 In config.yml
 
