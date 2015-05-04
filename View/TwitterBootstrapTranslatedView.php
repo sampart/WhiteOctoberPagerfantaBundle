@@ -18,21 +18,37 @@ namespace WhiteOctober\PagerfantaBundle\View;
  */
 class TwitterBootstrapTranslatedView extends TranslatedView
 {
+    /**
+     * @return string
+     */
     protected function previousMessageOption()
     {
         return 'prev_message';
     }
 
+    /**
+     * @return string
+     */
     protected function nextMessageOption()
     {
         return 'next_message';
     }
 
+    /**
+     * @param string $text
+     *
+     * @return string
+     */
     protected function buildPreviousMessage($text)
     {
         return sprintf('&larr; %s', $text);
     }
 
+    /**
+     * @param string $text
+     *
+     * @return string
+     */
     protected function buildNextMessage($text)
     {
         return sprintf('%s &rarr;', $text);

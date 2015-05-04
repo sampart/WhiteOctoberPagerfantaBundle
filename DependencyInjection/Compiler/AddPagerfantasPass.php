@@ -22,6 +22,9 @@ use Symfony\Component\DependencyInjection\Reference;
  */
 class AddPagerfantasPass implements CompilerPassInterface
 {
+    /**
+     * @param ContainerBuilder $container
+     */
     public function process(ContainerBuilder $container)
     {
         if (!$container->hasDefinition('white_october_pagerfanta.view_factory')) {

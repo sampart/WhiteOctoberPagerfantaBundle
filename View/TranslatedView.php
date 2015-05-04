@@ -99,11 +99,17 @@ abstract class TranslatedView implements ViewInterface
         return $this->buildNextMessage($nextText);
     }
 
+    /**
+     * @return string
+     */
     private function previousText()
     {
         return $this->translator->trans('previous', array(), 'pagerfanta');
     }
 
+    /**
+     * @return string
+     */
     private function nextText()
     {
         return $this->translator->trans('next', array(), 'pagerfanta');

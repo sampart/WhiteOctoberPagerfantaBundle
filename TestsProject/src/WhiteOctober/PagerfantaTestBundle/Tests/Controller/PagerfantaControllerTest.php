@@ -244,7 +244,7 @@ EOF
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', $this->buildViewUrl($view));
+        $client->request('GET', $this->buildViewUrl($view));
 
         $response = $client->getResponse();
         $this->assertSame(200, $response->getStatusCode());
