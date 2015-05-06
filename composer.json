@@ -18,7 +18,8 @@
     },
     "require-dev": {
         "symfony/symfony": "~2.2",
-        "phpunit/phpunit": "~3.7"
+        "phpunit/phpunit": "~3.7",
+        "mockery/mockery": "~0.8"
     },
     "autoload": {
         "psr-0": { "WhiteOctober\\PagerfantaBundle": "" }
