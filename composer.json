@@ -11,13 +11,13 @@
         }
     ],
     "require": {
-        "symfony/framework-bundle": "~2.2",
-        "symfony/twig-bundle": "~2.2",
-        "symfony/property-access": "~2.2",
+        "symfony/framework-bundle": "~2.3",
+        "symfony/twig-bundle": "~2.3",
+        "symfony/property-access": "~2.3",
         "pagerfanta/pagerfanta": "1.0.*"
     },
     "require-dev": {
-        "symfony/symfony": "~2.2",
+        "symfony/symfony": "~2.3",
         "phpunit/phpunit": "~3.7"
     },
     "autoload": {
