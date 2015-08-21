@@ -21,9 +21,8 @@
         "phpunit/phpunit": "~3.7"
     },
     "autoload": {
-        "psr-0": { "WhiteOctober\\PagerfantaBundle": "" }
+        "psr-4": { "WhiteOctober\\PagerfantaBundle\\": "" }
     },
-    "target-dir": "WhiteOctober/PagerfantaBundle",
     "extra": {
         "branch-alias": {
             "dev-master": "1.0.x-dev"
