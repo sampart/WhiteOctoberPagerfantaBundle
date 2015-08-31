@@ -31,22 +31,16 @@ class PagerfantaController extends Controller
 
     public function defaultTranslatedViewAction()
     {
-        $this->setLocale('es');
-
         return $this->renderPagerfanta('defaultTranslatedView');
     }
 
     public function twitterBootstrapTranslatedViewAction()
     {
-        $this->setLocale('es');
-
         return $this->renderPagerfanta('twitterBootstrapTranslatedView');
     }
 
     public function twitterBootstrap3TranslatedViewAction()
     {
-        $this->setLocale('es');
-
         return $this->renderPagerfanta('twitterBootstrap3TranslatedView');
     }
 
@@ -54,7 +48,6 @@ class PagerfantaController extends Controller
     {
         return $this->renderPagerfanta('myView1');
     }
-
 
     public function viewWithRouteParamsAction($test = null)
     {
@@ -102,10 +95,5 @@ class PagerfantaController extends Controller
         $results = range(1, $nbResults);
 
         return new FixedAdapter($nbResults, $results);
-    }
-
-    private function setLocale($locale)
-    {
-        $this->getRequest()->setLocale($locale);
     }
 }

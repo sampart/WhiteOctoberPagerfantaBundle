@@ -21,15 +21,15 @@ pagerfanta_view_with_route_params:
 
 pagerfanta_default_translated_view:
     path:      /pagerfanta/default-translated-view
-    defaults:  { _controller: WhiteOctoberPagerfantaTestBundle:Pagerfanta:defaultTranslatedView }
+    defaults:  { _controller: WhiteOctoberPagerfantaTestBundle:Pagerfanta:defaultTranslatedView, _locale: es }
 
 pagerfanta_twitter_bootstrap_translated_view:
     path:      /pagerfanta/twitter-bootstrap-translated-view
-    defaults:  { _controller: WhiteOctoberPagerfantaTestBundle:Pagerfanta:twitterBootstrapTranslatedView }
+    defaults:  { _controller: WhiteOctoberPagerfantaTestBundle:Pagerfanta:twitterBootstrapTranslatedView, _locale: es }
 
 pagerfanta_twitter_bootstrap3_translated_view:
     path:      /pagerfanta/twitter-bootstrap3-translated-view
-    defaults:  { _controller: WhiteOctoberPagerfantaTestBundle:Pagerfanta:twitterBootstrap3TranslatedView }
+    defaults:  { _controller: WhiteOctoberPagerfantaTestBundle:Pagerfanta:twitterBootstrap3TranslatedView, _locale: es }
 
 pagerfanta_my_view_1:
     path:      /pagerfanta/my-view-1
