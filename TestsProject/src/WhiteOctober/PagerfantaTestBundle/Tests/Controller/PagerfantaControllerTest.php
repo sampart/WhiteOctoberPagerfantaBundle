@@ -188,7 +188,7 @@ EOF
         $client->request('GET', $this->buildViewUrl('custom-page?currentPage=51'));
 
         $response = $client->getResponse();
-        $this->assertSame(500, $response->getStatusCode());
+        $this->assertSame(404, $response->getStatusCode());
     }
 
     /**
@@ -221,7 +221,7 @@ EOF
         $client->request('GET', $this->buildViewUrl('custom-page?maxPerPage=invalid'));
 
         $response = $client->getResponse();
-        $this->assertSame(500, $response->getStatusCode());
+        $this->assertSame(404, $response->getStatusCode());
     }
 
     /**

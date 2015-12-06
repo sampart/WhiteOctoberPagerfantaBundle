@@ -21,8 +21,6 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  */
 class Configuration implements ConfigurationInterface
 {
-    const EXCEPTION_STRATEGY_NONE = false;
-
     const EXCEPTION_STRATEGY_TO_HTTP_NOT_FOUND = 'to_http_not_found';
 
     /**
@@ -41,8 +39,8 @@ class Configuration implements ConfigurationInterface
                 ->arrayNode('exceptions_strategy')
                     ->addDefaultsIfNotSet()
                     ->children()
-                        ->scalarNode('out_of_range_page')->defaultValue(self::EXCEPTION_STRATEGY_NONE)->end()
-                        ->scalarNode('not_valid_current_page')->defaultValue(self::EXCEPTION_STRATEGY_NONE)->end()
+                        ->scalarNode('out_of_range_page')->defaultValue(self::EXCEPTION_STRATEGY_TO_HTTP_NOT_FOUND)->end()
+                        ->scalarNode('not_valid_current_page')->defaultValue(self::EXCEPTION_STRATEGY_TO_HTTP_NOT_FOUND)->end()
                     ->end()
                 ->end()
             ->end();
