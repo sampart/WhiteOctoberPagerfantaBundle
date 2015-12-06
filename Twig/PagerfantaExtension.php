@@ -108,21 +108,26 @@ class PagerfantaExtension extends \Twig_Extension
         $router = $this->container->get('router');
 
         if (null === $options['routeName']) {
-            $request = $this->container->get('request');
+            if (null !== $requestStack = $this->container->get('request_stack', ContainerInterface::NULL_ON_INVALID_REFERENCE)) {
+                $request = $requestStack->getCurrentRequest();
+            } else {
+                // Symfony 2.3 compatibility
+                $request = $this->container->get('request');
+            }
 
             $options['routeName'] = $request->attributes->get('_route');
             if ('_internal' === $options['routeName']) {
                 throw new \Exception('PagerfantaBundle can not guess the route when used in a subrequest');
             }
-            
-            // make sure we read the route parameters from the passed option array            
+
+            // make sure we read the route parameters from the passed option array
             $defaultRouteParams = array_merge($request->query->all(), $request->attributes->get('_route_params', array()));
 
             if (array_key_exists('routeParams', $options)) {
                 $options['routeParams'] = array_merge($defaultRouteParams, $options['routeParams']);
             } else {
                 $options['routeParams'] = $defaultRouteParams;
-            }   
+            }
         }
 
         $routeName = $options['routeName'];
