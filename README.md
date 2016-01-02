@@ -44,18 +44,21 @@ B) **Rendering in Twig** is shown below in the [Rendering pagerfantas](#renderin
 
 C) **Configuration** is shown through this document
 
-Making Bad Page Numbers Return a 404
+Making bad page numbers return a HTTP 500
 ------------------------------------
 
-Right now when the page is out of range or not a number, the server returns a 500 response. You can set the following parameter to show a 404 exception when the requested page is not valid instead.
-It is set to "false" by default to provide backwards-compatibility (before it was 500).
+Right now when the page is out of range or not a number,
+the server returns a 404 response by default.
+You can set the following parameters to different than default value
+`to_http_not_found` (ie. null) to show a 500 exception when the
+requested page is not valid instead.
 
 ```yml
 // app/config/config.yml
 white_october_pagerfanta:
     exceptions_strategy:
-        out_of_range_page:        to_http_not_found
-        not_valid_current_page:   to_http_not_found
+        out_of_range_page:        ~
+        not_valid_current_page:   ~
 ```
 
 Rendering pagerfantas
