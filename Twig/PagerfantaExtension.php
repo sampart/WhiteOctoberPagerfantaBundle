@@ -103,6 +103,7 @@ class PagerfantaExtension extends \Twig_Extension
                 'routeName'     => null,
                 'routeParams'   => array(),
                 'pageParameter' => '[page]',
+                'omitFirstPage' => true
             ), $options);
 
         $router = $this->container->get('router');
@@ -133,13 +134,15 @@ class PagerfantaExtension extends \Twig_Extension
         $routeName = $options['routeName'];
         $routeParams = $options['routeParams'];
         $pagePropertyPath = new PropertyPath($options['pageParameter']);
+        $omitFirstPage = $options['omitFirstPage'];
 
-        return function($page) use($router, $routeName, $routeParams, $pagePropertyPath) {
+        return function($page) use($router, $routeName, $routeParams, $pagePropertyPath, $omitFirstPage) {
             $propertyAccessor = PropertyAccess::createPropertyAccessor();
-            $propertyAccessor->setValue($routeParams, $pagePropertyPath, $page);
-
-            $pageParam = $page > 1 ? $page : null;
-            $propertyAccessor->setValue($routeParams, $pagePropertyPath, $pageParam);
+            if($omitFirstPage){
+                $propertyAccessor->setValue($routeParams, $pagePropertyPath, $page > 1 ? $page : null);
+            } else {
+                $propertyAccessor->setValue($routeParams, $pagePropertyPath, $page);
+            }
 
             return $router->generate($routeName, $routeParams);
         };
