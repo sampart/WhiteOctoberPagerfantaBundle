@@ -215,6 +215,27 @@ EOF
     /**
      * @test
      */
+    public function testFirstPageParam()
+    {
+        $this->assertView('view-with-first-page-param?currentPage=2', <<<EOF
+<nav>
+    <a href="/pagerfanta/view-with-first-page-param?currentPage=2&page=1">Previous</a>
+    <a href="/pagerfanta/view-with-first-page-param?currentPage=2&page=1">1</a>
+    <span class="current">2</span>
+    <a href="/pagerfanta/view-with-first-page-param?currentPage=2&page=3">3</a>
+    <a href="/pagerfanta/view-with-first-page-param?currentPage=2&page=4">4</a>
+    <a href="/pagerfanta/view-with-first-page-param?currentPage=2&page=5">5</a>
+    <span class="dots">...</span>
+    <a href="/pagerfanta/view-with-first-page-param?currentPage=2&page=10">10</a>
+    <a href="/pagerfanta/view-with-first-page-param?currentPage=2&page=3">Next</a>
+</nav>
+EOF
+        );
+    }
+
+    /**
+     * @test
+     */
     public function testWrongMaxPerPageExceptionWithNoneStrategy()
     {
         $client = static::createClient();

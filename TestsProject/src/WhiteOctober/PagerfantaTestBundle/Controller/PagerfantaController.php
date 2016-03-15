@@ -29,6 +29,11 @@ class PagerfantaController extends Controller
         return $this->renderPagerfanta('viewWithOptions');
     }
 
+    public function viewWithFirstPageParamAction(Request $request)
+    {
+        return $this->defaultWithRequestAction($request, 'viewWithFirstPageParam');
+    }
+
     public function defaultTranslatedViewAction()
     {
         return $this->renderPagerfanta('defaultTranslatedView');
@@ -54,9 +59,9 @@ class PagerfantaController extends Controller
         return $this->renderPagerfanta('viewWithRouteParams');
     }
 
-    public function defaultWithRequestAction(Request $request)
+    public function defaultWithRequestAction(Request $request, $name = 'defaultView')
     {
-        $template = $this->buildTemplateName('defaultView');
+        $template = $this->buildTemplateName($name);
         $pagerfanta = $this->createPagerfanta();
         $pagerfanta->setMaxPerPage($request->query->get('maxPerPage', 10));
         $pagerfanta->setCurrentPage($request->query->get('currentPage', 1));
