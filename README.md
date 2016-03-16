@@ -78,6 +78,14 @@ The routes are generated automatically for the current route using the variable
 </div>
 ```
 
+By default, the "page" variable is also added for the link to the first page. To 
+disable the generation of `?page=1` in the url, simply set the `omitFirstPage` option
+to `true` when calling the `pagerfanta` twig function:
+
+```
+{{ pagerfanta(my_pager, 'default', { 'omitFirstPage': true}) }}
+```
+
 ### Twitter Bootstrap
 
 The bundle also has TwitterBootstrapView.
