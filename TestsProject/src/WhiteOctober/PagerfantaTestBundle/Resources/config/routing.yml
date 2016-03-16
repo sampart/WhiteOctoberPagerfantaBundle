@@ -38,3 +38,7 @@ pagerfanta_my_view_1:
 pagerfanta_correct_view:
     path:      /pagerfanta/custom-page
     defaults:  { _controller: WhiteOctoberPagerfantaTestBundle:Pagerfanta:defaultWithRequest }
+
+pagerfanta_view_with_first_page_param:
+    path:      /pagerfanta/view-with-first-page-param
+    defaults:  { _controller: WhiteOctoberPagerfantaTestBundle:Pagerfanta:viewWithFirstPageParam }
