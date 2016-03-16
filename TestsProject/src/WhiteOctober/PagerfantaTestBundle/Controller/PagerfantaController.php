@@ -29,9 +29,9 @@ class PagerfantaController extends Controller
         return $this->renderPagerfanta('viewWithOptions');
     }
 
-    public function viewWithFirstPageParamAction(Request $request)
+    public function viewWithoutFirstPageParamAction(Request $request)
     {
-        return $this->defaultWithRequestAction($request, 'viewWithFirstPageParam');
+        return $this->defaultWithRequestAction($request, 'viewWithoutFirstPageParam');
     }
 
     public function defaultTranslatedViewAction()
