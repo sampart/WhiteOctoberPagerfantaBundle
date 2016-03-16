@@ -103,7 +103,7 @@ class PagerfantaExtension extends \Twig_Extension
                 'routeName'     => null,
                 'routeParams'   => array(),
                 'pageParameter' => '[page]',
-                'omitFirstPage' => true
+                'omitFirstPage' => false
             ), $options);
 
         $router = $this->container->get('router');
