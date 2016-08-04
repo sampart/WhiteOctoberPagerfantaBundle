@@ -79,7 +79,7 @@ class PagerfantaExtension extends \Twig_Extension
      */
     public function getPageUrl(PagerfantaInterface $pagerfanta, $page, array $options = array())
     {
-        if ($page < 0 || $page > $pagerfanta->count()) {
+        if ($page < 0 || $page > $pagerfanta->getNbPages()) {
             throw new \InvalidArgumentException("Page '{$page}' is out of bounds");
         }
 
