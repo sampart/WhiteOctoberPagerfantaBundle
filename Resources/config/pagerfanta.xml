@@ -37,6 +37,11 @@
             <tag name="pagerfanta.view" alias="twitter_bootstrap3" />
         </service>
 
+        <!-- "semantic_ui" view -->
+        <service id="pagerfanta.view.semantic_ui" class="Pagerfanta\View\SemanticUiView" public="false">
+            <tag name="pagerfanta.view" alias="semantic_ui" />
+        </service>
+
         <!-- "twitter_bootstrap3_translated" view -->
         <service id="pagerfanta.view.twitter_bootstrap3_translated" class="WhiteOctober\PagerfantaBundle\View\TwitterBootstrap3TranslatedView" public="false">
             <tag name="pagerfanta.view" alias="twitter_bootstrap3_translated" />
@@ -49,6 +54,13 @@
         <service id="pagerfanta.view.twitter_bootstrap_translated" class="WhiteOctober\PagerfantaBundle\View\TwitterBootstrapTranslatedView" public="false">
             <tag name="pagerfanta.view" alias="twitter_bootstrap_translated" />
             <argument type="service" id="pagerfanta.view.twitter_bootstrap" />
+            <argument type="service" id="translator" />
+        </service>
+
+        <!-- "semantic_ui_translated" view -->
+        <service id="pagerfanta.view.semantic_ui_translated" class="WhiteOctober\PagerfantaBundle\View\SemanticUiTranslatedView" public="false">
+            <tag name="pagerfanta.view" alias="semantic_ui_translated" />
+            <argument type="service" id="pagerfanta.view.semantic_ui" />
             <argument type="service" id="translator" />
         </service>
 
