@@ -176,7 +176,7 @@ services:
         class: Pagerfanta\View\OptionableView
         arguments:
             - @pagerfanta.view.default
-            - { proximity: 2, previous_message: Anterior, next_message: Siguiente }
+            - { proximity: 2, prev_message: Anterior, next_message: Siguiente }
         public: false
         tags: [{ name: pagerfanta.view, alias: my_view_1 }]
     pagerfanta.view.my_view_2:
