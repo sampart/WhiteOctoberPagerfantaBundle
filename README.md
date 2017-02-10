@@ -40,37 +40,27 @@ public function registerBundles()
 
 A) **Creating a Pager** is shown on the [Pagerfanta](https://github.com/whiteoctober/Pagerfanta) documentation. If you're using the Doctrine ORM, you'll want to use the [DoctrineORMAdapter](https://github.com/whiteoctober/Pagerfanta#doctrineormadapter)
 
-B) **Rendering in Twig** is shown below in the [Rendering pagerfantas](#rendering-pagerfantas) section.
+B) **Rendering in Twig** is shown below in the [Rendering Pagerfantas](#rendering-pagerfantas) section.
 
 C) **Configuration** is shown through this document
 
-Making bad page numbers return a HTTP 500
-------------------------------------
-
-Right now when the page is out of range or not a number,
-the server returns a 404 response by default.
-You can set the following parameters to different than default value
-`to_http_not_found` (ie. null) to show a 500 exception when the
-requested page is not valid instead.
-
-```yml
-// app/config/config.yml
-white_october_pagerfanta:
-    exceptions_strategy:
-        out_of_range_page:        ~
-        not_valid_current_page:   ~
-```
-
-Rendering pagerfantas
+Rendering Pagerfantas
 ---------------------
 
-```twig
-    {{ pagerfanta(my_pager, view_name, view_options) }}
+First, you'll need to pass an instance of Pagerfanta as a parameter into your template.
+For example:
+
+```php
+$adapter = new DoctrineORMAdapter($queryBuilder);
+$pagerfanta = new Pagerfanta($adapter);
+    return $this->render('@YourApp/Main/example.html.twig', [
+    'my_pager' => $pagerfanta,
+]);
 ```
 
-The routes are generated automatically for the current route using the variable
-"page" to propagate the page number. By default, the bundle uses the
-*DefaultView* with the *default* name. The default syntax is:
+You then call the the Pagerfanta Twig extension, passing in the Pagerfanta instance.
+The routes are generated automatically for the current route using the variable "page" to propagate the page number.
+By default, the bundle uses the *DefaultView* with the *default* name. The default syntax is:
 
 ```twig
 <div class="pagerfanta">
@@ -88,7 +78,7 @@ to `true` when calling the `pagerfanta` twig function:
 
 ### Twitter Bootstrap
 
-The bundle also has TwitterBootstrapView.
+The bundle also has a Twitter Bootstrap view.
 
 For Bootstrap 2:
 
@@ -109,7 +99,7 @@ For Bootstrap 3:
 ### Custom template
 
 
-If you want to use a custom template, add another argument
+If you want to use a custom template, add another argument:
 
 ```twig
 <div class="pagerfanta">
@@ -117,13 +107,13 @@ If you want to use a custom template, add another argument
 </div>
 ```
 
-With Options
+With options:
 
 ```twig
 {{ pagerfanta(my_pager, 'default', { 'proximity': 2}) }}
 ```
 
-See the Pagerfanta documentation for the list of the parameters.
+See the [Pagerfanta documentation](https://github.com/whiteoctober/Pagerfanta) for the list of possible parameters.
 
 Translate in your language
 --------------------------
@@ -132,9 +122,9 @@ The bundle also offers two views to translate the *default* and the
 *twitter bootstrap* views.
 
 ```twig
-{{ pagerfanta(pagerfanta, 'default_translated') }}
+{{ pagerfanta(my_pager, 'default_translated') }}
 
-{{ pagerfanta(pagerfanta, 'twitter_bootstrap_translated') }}
+{{ pagerfanta(my_pager, 'twitter_bootstrap_translated') }}
 ```
 
 Adding Views
@@ -191,11 +181,21 @@ services:
 And using then:
 
 ```twig
-{{ pagerfanta(pagerfanta, 'my_view_1') }}
-{{ pagerfanta(pagerfanta, 'my_view_2') }}
+{{ pagerfanta(my_pager, 'my_view_1') }}
+{{ pagerfanta(my_pager, 'my_view_2') }}
 ```
 
 The easiest way to render pagerfantas (or paginators!) ;)
+
+Basic CSS for the default view
+------------------------------
+
+The bundles comes with basic CSS for the default view so you can get started with a good paginator faster.
+Of course you can change it, use another one or create your own view.
+
+```html
+<link rel="stylesheet" href="{{ asset('bundles/whiteoctoberpagerfanta/css/pagerfantaDefault.css') }}" type="text/css" media="all" />
+```
 
 Configuration
 -------------
@@ -208,15 +208,21 @@ white_october_pagerfanta:
     default_view: my_view_1
 ```
 
-Basic CSS for the default view
-------------------------------
+Making bad page numbers return a HTTP 500
+-----------------------------------------
 
-The bundles comes with a basic css for the default view to be able to use a
-good paginator faster. Of course you can change it, use another one or
-create your own view.
+Right now when the page is out of range or not a number,
+the server returns a 404 response by default.
+You can set the following parameters to different than default value
+`to_http_not_found` (ie. null) to show a 500 exception when the
+requested page is not valid instead.
 
-```html
-<link rel="stylesheet" href="{{ asset('bundles/whiteoctoberpagerfanta/css/pagerfantaDefault.css') }}" type="text/css" media="all" />
+```yml
+// app/config/config.yml
+white_october_pagerfanta:
+    exceptions_strategy:
+        out_of_range_page:        ~
+        not_valid_current_page:   ~
 ```
 
 More information
@@ -224,18 +230,13 @@ More information
 
 For more advanced documentation, check the [Pagerfanta documentation](https://github.com/whiteoctober/Pagerfanta/blob/master/README.md).
 
-Author
-------
+Acknowledgements
+-----------------
 
-Pablo Díez - <pablodip@gmail.com>
+Pablo Díez (pablodip@gmail.com) for most of the work on the first versions of this bundle.
 
 License
 -------
 
 Pagerfanta is licensed under the MIT License. See the LICENSE file for full
 details.
-
-Sponsors
---------
-
-[WhiteOctober](http://www.whiteoctober.co.uk/)
