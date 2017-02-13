@@ -179,6 +179,24 @@ EOF
 
     }
 
+    public function testDefaultShortView()
+    {
+        $this->assertView('default-short-view', <<<EOF
+<nav>
+    <span class="disabled">Previous</span>
+    <span class="current">1</span>
+    <a href="/pagerfanta/default-short-view?test=im-a-short&page=2">2</a>
+    <a href="/pagerfanta/default-short-view?test=im-a-short&page=3">3</a>
+    <a href="/pagerfanta/default-short-view?test=im-a-short&page=4">4</a>
+    <a href="/pagerfanta/default-short-view?test=im-a-short&page=5">5</a>
+    <span class="dots">...</span><a href="/pagerfanta/default-short-view?test=im-a-short&page=10">10</a>
+    <a href="/pagerfanta/default-short-view?test=im-a-short&page=2" rel="next">Next</a>
+</nav>
+
+EOF
+        );
+    }
+
     /**
      * @test
      */

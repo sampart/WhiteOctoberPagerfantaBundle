@@ -76,6 +76,12 @@ to `true` when calling the `pagerfanta` twig function:
 {{ pagerfanta(my_pager, 'default', { 'omitFirstPage': true}) }}
 ```
 
+You can omit template parameter to make function call shorter, default template will be used:
+
+```
+{{ pagerfanta(my_pager, { 'omitFirstPage': true }) }}
+```
+
 ### Twitter Bootstrap
 
 The bundle also has a Twitter Bootstrap view.

@@ -14,6 +14,11 @@ class PagerfantaController extends Controller
         return $this->renderPagerfanta('defaultView');
     }
 
+    public function defaultShortViewAction()
+    {
+        return $this->renderPagerfanta('defaultShortView');
+    }
+
     public function twitterBootstrapViewAction()
     {
         return $this->renderPagerfanta('twitterBootstrapView');
