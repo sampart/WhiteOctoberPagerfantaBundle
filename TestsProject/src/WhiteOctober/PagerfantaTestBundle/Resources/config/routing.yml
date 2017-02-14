@@ -2,6 +2,10 @@ pagerfanta_default_view:
     path:      /pagerfanta/default-view
     defaults:  { _controller: WhiteOctoberPagerfantaTestBundle:Pagerfanta:defaultView }
 
+pagerfanta_default_short_view:
+    path:      /pagerfanta/default-short-view
+    defaults:  { _controller: WhiteOctoberPagerfantaTestBundle:Pagerfanta:defaultShortView }
+
 pagerfanta_twitter_bootstrap_view:
     path:      /pagerfanta/twitter-bootstrap-view
     defaults:  { _controller: WhiteOctoberPagerfantaTestBundle:Pagerfanta:twitterBootstrapView }
