@@ -50,16 +50,18 @@ class PagerfantaExtension extends \Twig_Extension
      * Renders a pagerfanta.
      *
      * @param PagerfantaInterface $pagerfanta The pagerfanta.
-     * @param string              $viewName   The view name.
+     * @param string|array        $viewName   The view name.
      * @param array               $options    An array of options (optional).
      *
      * @return string The pagerfanta rendered.
      */
     public function renderPagerfanta(PagerfantaInterface $pagerfanta, $viewName = null, array $options = array())
     {
-        if (null === $viewName) {
-            $viewName = $this->container->getParameter('white_october_pagerfanta.default_view');
+        if (is_array($viewName)) {
+            list($viewName, $options) = array(null, $viewName);
         }
+
+        $viewName = $viewName ?: $this->container->getParameter('white_october_pagerfanta.default_view');
 
         $routeGenerator = $this->createRouteGenerator($options);
 

@@ -19,7 +19,7 @@ class PagerfantaControllerTest extends WebTestCase
     <a href="/pagerfanta/default-view?page=5">5</a>
     <span class="dots">...</span>
     <a href="/pagerfanta/default-view?page=10">10</a>
-    <a href="/pagerfanta/default-view?page=2">Next</a>
+    <a href="/pagerfanta/default-view?page=2" rel="next">Next</a>
 </nav>
 EOF
         );
@@ -40,7 +40,7 @@ EOF
         <li><a href="/pagerfanta/twitter-bootstrap-view?page=7">7</a></li>
         <li class="disabled"><span>&hellip;</span></li>
         <li><a href="/pagerfanta/twitter-bootstrap-view?page=10">10</a></li>
-        <li class="next"><a href="/pagerfanta/twitter-bootstrap-view?page=2">Next &rarr;</a></li>
+        <li class="next"><a href="/pagerfanta/twitter-bootstrap-view?page=2" rel="next">Next &rarr;</a></li>
     </ul>
 </div>
 EOF
@@ -61,7 +61,7 @@ EOF
     <li><a href="/pagerfanta/twitter-bootstrap3-view?page=7">7</a></li>
     <li class="disabled"><span>&hellip;</span></li>
     <li><a href="/pagerfanta/twitter-bootstrap3-view?page=10">10</a></li>
-    <li class="next"><a href="/pagerfanta/twitter-bootstrap3-view?page=2">Next &rarr;</a></li>
+    <li class="next"><a href="/pagerfanta/twitter-bootstrap3-view?page=2" rel="next">Next &rarr;</a></li>
 </ul>
 EOF
         );
@@ -77,7 +77,7 @@ EOF
     <a href="/pagerfanta/view-with-options?page=3">3</a>
     <span class="dots">...</span>
     <a href="/pagerfanta/view-with-options?page=10">10</a>
-    <a href="/pagerfanta/view-with-options?page=2">Next</a>
+    <a href="/pagerfanta/view-with-options?page=2" rel="next">Next</a>
 </nav>
 EOF
         );
@@ -95,7 +95,7 @@ EOF
     <a href="/pagerfanta/default-translated-view?page=5">5</a>
     <span class="dots">...</span>
     <a href="/pagerfanta/default-translated-view?page=10">10</a>
-    <a href="/pagerfanta/default-translated-view?page=2">Siguiente &#187;</a>
+    <a href="/pagerfanta/default-translated-view?page=2" rel="next">Siguiente &#187;</a>
 </nav>
 EOF
         );
@@ -116,7 +116,7 @@ EOF
         <li><a href="/pagerfanta/twitter-bootstrap-translated-view?page=7">7</a></li>
         <li class="disabled"><span>&hellip;</span></li>
         <li><a href="/pagerfanta/twitter-bootstrap-translated-view?page=10">10</a></li>
-        <li class="next"><a href="/pagerfanta/twitter-bootstrap-translated-view?page=2">Siguiente &rarr;</a></li>
+        <li class="next"><a href="/pagerfanta/twitter-bootstrap-translated-view?page=2" rel="next">Siguiente &rarr;</a></li>
     </ul>
 </div>
 EOF
@@ -137,7 +137,7 @@ EOF
     <li><a href="/pagerfanta/twitter-bootstrap3-translated-view?page=7">7</a></li>
     <li class="disabled"><span>&hellip;</span></li>
     <li><a href="/pagerfanta/twitter-bootstrap3-translated-view?page=10">10</a></li>
-    <li class="next"><a href="/pagerfanta/twitter-bootstrap3-translated-view?page=2">Siguiente &rarr;</a></li>
+    <li class="next"><a href="/pagerfanta/twitter-bootstrap3-translated-view?page=2" rel="next">Siguiente &rarr;</a></li>
 </ul>
 EOF
         );
@@ -155,7 +155,7 @@ EOF
     <a href="/pagerfanta/my-view-1?page=5">5</a>
     <span class="dots">...</span>
     <a href="/pagerfanta/my-view-1?page=10">10</a>
-    <a href="/pagerfanta/my-view-1?page=2">Siguiente</a>
+    <a href="/pagerfanta/my-view-1?page=2" rel="next">Siguiente</a>
 </nav>
 EOF
         );
@@ -172,11 +172,29 @@ EOF
     <a href="/pagerfanta/view-with-route-params?test=im-a-test&page=4">4</a>
     <a href="/pagerfanta/view-with-route-params?test=im-a-test&page=5">5</a>
     <span class="dots">...</span><a href="/pagerfanta/view-with-route-params?test=im-a-test&page=10">10</a>
-    <a href="/pagerfanta/view-with-route-params?test=im-a-test&page=2">Next</a>
+    <a href="/pagerfanta/view-with-route-params?test=im-a-test&page=2" rel="next">Next</a>
 </nav>
 EOF
 );
 
+    }
+
+    public function testDefaultShortView()
+    {
+        $this->assertView('default-short-view', <<<EOF
+<nav>
+    <span class="disabled">Previous</span>
+    <span class="current">1</span>
+    <a href="/pagerfanta/default-short-view?test=im-a-short&page=2">2</a>
+    <a href="/pagerfanta/default-short-view?test=im-a-short&page=3">3</a>
+    <a href="/pagerfanta/default-short-view?test=im-a-short&page=4">4</a>
+    <a href="/pagerfanta/default-short-view?test=im-a-short&page=5">5</a>
+    <span class="dots">...</span><a href="/pagerfanta/default-short-view?test=im-a-short&page=10">10</a>
+    <a href="/pagerfanta/default-short-view?test=im-a-short&page=2" rel="next">Next</a>
+</nav>
+
+EOF
+        );
     }
 
     /**
@@ -198,7 +216,7 @@ EOF
     {
         $this->assertView('custom-page?currentPage=2', <<<EOF
 <nav>
-    <a href="/pagerfanta/custom-page?currentPage=2&page=1">Previous</a>
+    <a href="/pagerfanta/custom-page?currentPage=2&page=1" rel="prev">Previous</a>
     <a href="/pagerfanta/custom-page?currentPage=2&page=1">1</a>
     <span class="current">2</span>
     <a href="/pagerfanta/custom-page?currentPage=2&page=3">3</a>
@@ -206,7 +224,7 @@ EOF
     <a href="/pagerfanta/custom-page?currentPage=2&page=5">5</a>
     <span class="dots">...</span>
     <a href="/pagerfanta/custom-page?currentPage=2&page=10">10</a>
-    <a href="/pagerfanta/custom-page?currentPage=2&page=3">Next</a>
+    <a href="/pagerfanta/custom-page?currentPage=2&page=3" rel="next">Next</a>
 </nav>
 EOF
         );
@@ -219,7 +237,7 @@ EOF
     {
         $this->assertView('view-without-first-page-param?currentPage=2', <<<EOF
 <nav>
-    <a href="/pagerfanta/view-without-first-page-param?currentPage=2">Previous</a>
+    <a href="/pagerfanta/view-without-first-page-param?currentPage=2" rel="prev">Previous</a>
     <a href="/pagerfanta/view-without-first-page-param?currentPage=2">1</a>
     <span class="current">2</span>
     <a href="/pagerfanta/view-without-first-page-param?currentPage=2&page=3">3</a>
@@ -227,7 +245,7 @@ EOF
     <a href="/pagerfanta/view-without-first-page-param?currentPage=2&page=5">5</a>
     <span class="dots">...</span>
     <a href="/pagerfanta/view-without-first-page-param?currentPage=2&page=10">10</a>
-    <a href="/pagerfanta/view-without-first-page-param?currentPage=2&page=3">Next</a>
+    <a href="/pagerfanta/view-without-first-page-param?currentPage=2&page=3" rel="next">Next</a>
 </nav>
 EOF
         );
