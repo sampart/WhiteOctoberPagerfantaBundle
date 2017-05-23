@@ -121,6 +121,19 @@ With options:
 
 See the [Pagerfanta documentation](https://github.com/whiteoctober/Pagerfanta) for the list of possible parameters.
 
+Rendering the page of items itself
+----------------------------------
+
+The items can be retrieved using `currentPageResults`. For example:
+
+```twig
+{% for item in my_pager.currentPageResults %}
+    <ul>
+        <li>{{ item.id }}</li>
+    </ul>
+{% endfor %}
+```
+
 Translate in your language
 --------------------------
 
