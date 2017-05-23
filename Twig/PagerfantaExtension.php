@@ -145,7 +145,21 @@ class PagerfantaExtension extends \Twig_Extension
                 $propertyAccessor->setValue($routeParams, $pagePropertyPath, $page);
             }
 
-            return $router->generate($routeName, $routeParams);
+            $url = $router->generate($routeName, $routeParams);
+
+            $parsedUrl = parse_url($url);
+
+            if (array_key_exists('query', $parsedUrl)) {
+                // encode query parameters
+                
+                $path = array_key_exists('path', $parsedUrl) ? $parsedUrl['path'] : '';
+                
+                parse_str($parsedUrl['query'], $queryParams);
+
+                $url = sprintf('%s?%s', $path, http_build_query($queryParams));
+            }
+            
+            return $url;
         };
     }
 
