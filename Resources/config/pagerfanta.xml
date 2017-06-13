@@ -36,6 +36,11 @@
         <service id="pagerfanta.view.twitter_bootstrap3" class="Pagerfanta\View\TwitterBootstrap3View" public="false">
             <tag name="pagerfanta.view" alias="twitter_bootstrap3" />
         </service>
+               
+        <!-- "twitter_bootstrap4" view -->
+        <service id="pagerfanta.view.twitter_bootstrap4" class="Pagerfanta\View\TwitterBootstrap4View" public="false">
+            <tag name="pagerfanta.view" alias="twitter_bootstrap4" />
+        </service>
 
         <!-- "semantic_ui" view -->
         <service id="pagerfanta.view.semantic_ui" class="Pagerfanta\View\SemanticUiView" public="false">
