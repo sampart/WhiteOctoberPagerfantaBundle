@@ -1,0 +1,1 @@
+This project's code-of-conduct can be found at [https://github.com/whiteoctober/open-source-code-of-conduct/blob/master/code_of_conduct.md](https://github.com/whiteoctober/open-source-code-of-conduct/blob/master/code_of_conduct.md).
