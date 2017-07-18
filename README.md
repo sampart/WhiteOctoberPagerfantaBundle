@@ -82,6 +82,17 @@ You can omit template parameter to make function call shorter, default template 
 {{ pagerfanta(my_pager, { 'omitFirstPage': true }) }}
 ```
 
+If you have multiple pagers on one page, you'll need to change the name of the `page` parameter.
+Here's an example:
+
+```twig
+<div class="pagerfanta">
+    {{ pagerfanta(my_other_pager, 'default', {'pageParameter': '[page_other]'}) }}
+</div>
+```
+
+Note the square brackets around `page_other`; this won't work without them.
+
 ### Twitter Bootstrap
 
 The bundle also has a Twitter Bootstrap view.
