@@ -180,6 +180,22 @@ services:
         tags: [{ name: pagerfanta.view, alias: default }]
 ```
 
+Customize buttons labels
+------------------------
+
+You can customize label with some HTML code if needed.
+
+In config.yml
+
+```yml
+twig:
+    globals:
+        pagerfanta_opts:
+            prev_message: "<samp class='sr-only'>Prev page</samp></i>"
+            next_message: "<samp class='sr-only'>Next page</samp></i>"
+            dots_message: "&middot;&middot;&middot;"
+```
+
 Reusing Options
 ---------------
 
