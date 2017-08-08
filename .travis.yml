@@ -1,7 +1,8 @@
 language: php
 
+dist: trusty
+
 php:
-  - 5.3
   - 5.4
   - 5.5
   - 5.6
@@ -9,6 +10,9 @@ php:
 
 matrix:
   include:
+    # PHP 5.3 doesn't install on Trusty on Travis: https://github.com/travis-ci/travis-ci/issues/8219
+    - php: 5.3
+      dist: precise
     # Force testing against LTS versions
     - php: 5.6
       env: SYMFONY_VERSION=2.3.*
