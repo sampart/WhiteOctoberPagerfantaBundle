@@ -11,9 +11,7 @@
 
     <services>
         <!-- View Factory -->
-        <service id="white_october_pagerfanta.view_factory" class="%white_october_pagerfanta.view_factory.class%">
-            <argument type="collection" />
-        </service>
+        <service id="white_october_pagerfanta.view_factory" class="%white_october_pagerfanta.view_factory.class%"/>
 
         <!-- "default" view -->
         <service id="pagerfanta.view.default" class="Pagerfanta\View\DefaultView" public="false">
