@@ -13,7 +13,7 @@ namespace WhiteOctober\PagerfantaBundle\Twig;
 
 use Pagerfanta\PagerfantaInterface;
 use Pagerfanta\View\ViewFactory;
-use Symfony\Component\BrowserKit\Request;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\PropertyAccess\PropertyPath;
