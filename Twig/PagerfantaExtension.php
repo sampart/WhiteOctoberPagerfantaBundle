@@ -32,7 +32,7 @@ class PagerfantaExtension extends \Twig_Extension
     private $requestStack;
     private $request;
 
-    public function __construct($defaultView, ViewFactory $viewFactory, RouterInterface $router, RequestStack $requestStack, Request $request)
+    public function __construct($defaultView, ViewFactory $viewFactory, RouterInterface $router, RequestStack $requestStack)
     {
         $this->defaultView = $defaultView;
         $this->viewFactory = $viewFactory;
@@ -117,12 +117,7 @@ class PagerfantaExtension extends \Twig_Extension
         $router = $this->router;
 
         if (null === $options['routeName']) {
-            if (null !== $this->requestStack) {
-                $request = $this->requestStack->getCurrentRequest();
-            } else {
-                // Symfony 2.3 compatibility
-                $request = $this->request;
-            }
+            $request = $this->getRequest();
 
             $options['routeName'] = $request->attributes->get('_route');
             if ('_internal' === $options['routeName']) {
@@ -153,6 +148,23 @@ class PagerfantaExtension extends \Twig_Extension
 
             return $router->generate($routeName, $routeParams);
         };
+    }
+
+    public function setRequest(Request $request = null)
+    {
+        $this->request = $request;
+    }
+
+    /**
+     * @return Request|null
+     */
+    private function getRequest()
+    {
+        if ($this->requestStack && $request = $this->requestStack->getCurrentRequest()) {
+            return $request;
+        }
+
+        return $this->request;
     }
 
     /**

@@ -74,7 +74,6 @@
             <argument type="service" id="white_october_pagerfanta.view_factory" />
             <argument type="service" id="router" />
             <argument type="service" id="request_stack" on-invalid="null" />
-            <argument type="service" id="request" on-invalid="null" />
         </service>
 
         <service id="pagerfanta.convert_not_valid_max_per_page_to_not_found_listener" class="WhiteOctober\PagerfantaBundle\EventListener\ConvertNotValidMaxPerPageToNotFoundListener">
