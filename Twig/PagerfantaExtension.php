@@ -38,7 +38,6 @@ class PagerfantaExtension extends \Twig_Extension
         $this->viewFactory = $viewFactory;
         $this->router = $router;
         $this->requestStack = $requestStack;
-        $this->request = $request;
     }
 
     /**
