@@ -32,7 +32,7 @@ class PagerfantaExtension extends \Twig_Extension
     private $requestStack;
     private $request;
 
-    public function __construct($defaultView, ViewFactory $viewFactory, RouterInterface $router, RequestStack $requestStack)
+    public function __construct($defaultView, ViewFactory $viewFactory, RouterInterface $router, RequestStack $requestStack = null)
     {
         $this->defaultView = $defaultView;
         $this->viewFactory = $viewFactory;
