@@ -12,9 +12,12 @@
 namespace WhiteOctober\PagerfantaBundle\Twig;
 
 use Pagerfanta\PagerfantaInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Pagerfanta\View\ViewFactory;
+use Symfony\Component\BrowserKit\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\PropertyAccess\PropertyPath;
+use Symfony\Component\Routing\RouterInterface;
 
 /**
  * PagerfantaExtension.
@@ -23,16 +26,19 @@ use Symfony\Component\PropertyAccess\PropertyPath;
  */
 class PagerfantaExtension extends \Twig_Extension
 {
-    private $container;
+    private $defaultView;
+    private $viewFactory;
+    private $router;
+    private $requestStack;
+    private $request;
 
-    /**
-     * Constructor.
-     *
-     * @param ContainerInterface $container A container.
-     */
-    public function __construct(ContainerInterface $container)
+    public function __construct($defaultView, ViewFactory $viewFactory, RouterInterface $router, RequestStack $requestStack, Request $request)
     {
-        $this->container = $container;
+        $this->defaultView = $defaultView;
+        $this->viewFactory = $viewFactory;
+        $this->router = $router;
+        $this->requestStack = $requestStack;
+        $this->request = $request;
     }
 
     /**
@@ -61,11 +67,11 @@ class PagerfantaExtension extends \Twig_Extension
             list($viewName, $options) = array(null, $viewName);
         }
 
-        $viewName = $viewName ?: $this->container->getParameter('white_october_pagerfanta.default_view');
+        $viewName = $viewName ?: $this->defaultView;
 
         $routeGenerator = $this->createRouteGenerator($options);
 
-        return $this->container->get('white_october_pagerfanta.view_factory')->get($viewName)->render($pagerfanta, $routeGenerator, $options);
+        return $this->viewFactory->get($viewName)->render($pagerfanta, $routeGenerator, $options);
     }
 
     /**
@@ -108,14 +114,14 @@ class PagerfantaExtension extends \Twig_Extension
                 'omitFirstPage' => false
             ), $options);
 
-        $router = $this->container->get('router');
+        $router = $this->router;
 
         if (null === $options['routeName']) {
-            if (null !== $requestStack = $this->container->get('request_stack', ContainerInterface::NULL_ON_INVALID_REFERENCE)) {
-                $request = $requestStack->getCurrentRequest();
+            if (null !== $this->requestStack) {
+                $request = $this->requestStack->getCurrentRequest();
             } else {
                 // Symfony 2.3 compatibility
-                $request = $this->container->get('request');
+                $request = $this->request;
             }
 
             $options['routeName'] = $request->attributes->get('_route');
