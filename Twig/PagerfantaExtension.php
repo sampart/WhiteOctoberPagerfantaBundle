@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\PropertyAccess\PropertyPath;
-use Symfony\Component\Routing\RouterInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
  * PagerfantaExtension.
@@ -32,7 +32,7 @@ class PagerfantaExtension extends \Twig_Extension
     private $requestStack;
     private $request;
 
-    public function __construct($defaultView, ViewFactory $viewFactory, RouterInterface $router, RequestStack $requestStack = null)
+    public function __construct($defaultView, ViewFactory $viewFactory, UrlGeneratorInterface $router, RequestStack $requestStack = null)
     {
         $this->defaultView = $defaultView;
         $this->viewFactory = $viewFactory;
