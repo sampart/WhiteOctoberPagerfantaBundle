@@ -70,7 +70,10 @@
         <!-- Twig Extension -->
         <service id="twig.extension.pagerfanta" class="WhiteOctober\PagerfantaBundle\Twig\PagerfantaExtension" public="false">
             <tag name="twig.extension" />
-            <argument type="service" id="service_container" />
+            <argument>%white_october_pagerfanta.default_view%</argument>
+            <argument type="service" id="white_october_pagerfanta.view_factory" />
+            <argument type="service" id="router" />
+            <argument type="service" id="request_stack" on-invalid="null" />
         </service>
 
         <service id="pagerfanta.convert_not_valid_max_per_page_to_not_found_listener" class="WhiteOctober\PagerfantaBundle\EventListener\ConvertNotValidMaxPerPageToNotFoundListener">

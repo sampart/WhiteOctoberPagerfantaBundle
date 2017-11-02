@@ -14,7 +14,9 @@ namespace WhiteOctober\PagerfantaBundle\DependencyInjection;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
+use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 /**
@@ -49,6 +51,16 @@ class WhiteOctoberPagerfantaExtension extends Extension
         if ($config['exceptions_strategy']['not_valid_current_page'] == Configuration::EXCEPTION_STRATEGY_TO_HTTP_NOT_FOUND) {
             $convertListener = $container->getDefinition('pagerfanta.convert_not_valid_current_page_to_not_found_listener');
             $convertListener->addTag('kernel.event_subscriber');
+        }
+
+        // BC layer to inject the 'request' service when RequestStack is unavailable
+        if (!class_exists('Symfony\\Component\\HttpFoundation\\RequestStack')) {
+            $container
+                ->getDefinition('twig.extension.pagerfanta')
+                ->addMethodCall('setRequest', array(
+                    new Reference('request', ContainerInterface::NULL_ON_INVALID_REFERENCE, false),
+                ))
+            ;
         }
     }
 }
