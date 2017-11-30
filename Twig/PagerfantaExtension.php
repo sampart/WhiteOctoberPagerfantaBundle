@@ -140,8 +140,9 @@ class PagerfantaExtension extends \Twig_Extension
 
         return function($page) use($router, $routeName, $routeParams, $pagePropertyPath, $omitFirstPage) {
             $propertyAccessor = PropertyAccess::createPropertyAccessor();
-            // don't set the page parameter if it is the first page and the omitFirstPage flag is true
-            if(!$omitFirstPage || $page > 1 ){
+            if($omitFirstPage){
+                $propertyAccessor->setValue($routeParams, $pagePropertyPath, $page > 1 ? $page : null);
+            } else {
                 $propertyAccessor->setValue($routeParams, $pagePropertyPath, $page);
             }
 
