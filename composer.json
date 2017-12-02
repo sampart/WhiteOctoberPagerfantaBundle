@@ -1,5 +1,5 @@
 {
-    "name": "white-october/pagerfanta-bundle",
+    "name": "hackeurtalibe/pagerfanta-bundle",
     "description": "Bundle to use Pagerfanta with Symfony2",
     "keywords": ["page","paging"],
     "type": "symfony-bundle",

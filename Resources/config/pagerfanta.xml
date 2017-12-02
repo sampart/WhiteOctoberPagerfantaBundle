@@ -46,13 +46,19 @@
         </service>
 
         <!-- "twitter_bootstrap3_translated" view -->
-        <service id="pagerfanta.view.twitter_bootstrap3_translated" class="WhiteOctober\PagerfantaBundle\View\TwitterBootstrap3TranslatedView" public="false">
+        <service id="pagerfanta.view.twitter_bootstrap3_translated" class="WhiteOctober\PagerfantaBundle\View\TwitterBootstrap3TranslatedView" public="true">
             <tag name="pagerfanta.view" alias="twitter_bootstrap3_translated" />
             <argument type="service" id="pagerfanta.view.twitter_bootstrap3" />
             <argument type="service" id="translator" />
         </service>
 
-
+        <!-- "twitter_bootstrap4_translated" view -->
+        <service id="pagerfanta.view.twitter_bootstrap3_translatedd"
+                 class="WhiteOctober\PagerfantaBundle\View\TwitterBootstrap3TranslatedView" public="true">
+            <tag name="pagerfanta.view" alias="twitter_bootstrap4_translated"/>
+            <argument type="service" id="pagerfanta.view.twitter_bootstrap4"/>
+            <argument type="service" id="translator"/>
+        </service>       
         <!-- "twitter_bootstrap_translated" view -->
         <service id="pagerfanta.view.twitter_bootstrap_translated" class="WhiteOctober\PagerfantaBundle\View\TwitterBootstrapTranslatedView" public="false">
             <tag name="pagerfanta.view" alias="twitter_bootstrap_translated" />
