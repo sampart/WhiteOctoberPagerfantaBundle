@@ -14,9 +14,9 @@
 namespace WhiteOctober\PagerfantaBundle\View;
 
 /**
- * TwitterBootstrap3TranslatedView
+ * TwitterBootstrap4TranslatedView
  *
- * This view renders the twitter bootstrap3 view with the text translated.
+ * This view renders the twitter bootstrap4 view with the text translated.
  */
 class TwitterBootstrap4TranslatedView extends TwitterBootstrapTranslatedView
 {
