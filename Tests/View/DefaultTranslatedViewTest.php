@@ -25,7 +25,7 @@ class DefaultTranslatedViewTest extends TranslatedViewTest
 
     protected function previousMessageOption()
     {
-        return 'previous_message';
+        return 'prev_message';
     }
 
     protected function nextMessageOption()
