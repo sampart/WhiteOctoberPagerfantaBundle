@@ -19,7 +19,7 @@
     },
     "require-dev": {
         "symfony/symfony": "~2.3|~3.0|~4.0",
-        "phpunit/phpunit": "~3.7|~4.0"
+        "phpunit/phpunit": "~3.7|~4.0|^5.0"
     },
     "autoload": {
         "classmap": [
