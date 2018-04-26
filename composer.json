@@ -32,6 +32,11 @@
             "WhiteOctober\\PagerfantaBundle\\View\\": "View"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "WhiteOctober\\PagerfantaBundle\\Tests\\": "Tests/"
+        }
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "1.0.x-dev"
