@@ -32,16 +32,25 @@ abstract class TranslatedViewTest extends \PHPUnit_Framework_TestCase
         $this->routeGenerator = $this->createRouteGenerator();
     }
 
+    protected function createOrGetMock($originalClassName)
+    {
+        if (method_exists($this, 'createMock')) {
+            return $this->createMock($originalClassName);
+        }
+
+        return $this->getMock($originalClassName);
+    }
+
     private function createViewMock()
     {
-        return $this->createMock($this->viewClass());
+        return $this->createOrGetMock($this->viewClass());
     }
 
     abstract protected function viewClass();
 
     private function createTranslatorMock()
     {
-        return $this->createMock('Symfony\Component\Translation\TranslatorInterface');
+        return $this->createOrGetMock('Symfony\Component\Translation\TranslatorInterface');
     }
 
     private function createTranslatedView()
