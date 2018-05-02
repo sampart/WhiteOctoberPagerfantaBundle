@@ -34,14 +34,14 @@ abstract class TranslatedViewTest extends \PHPUnit_Framework_TestCase
 
     private function createViewMock()
     {
-        return $this->getMock($this->viewClass());
+        return $this->createMock($this->viewClass());
     }
 
     abstract protected function viewClass();
 
     private function createTranslatorMock()
     {
-        return $this->getMock('Symfony\Component\Translation\TranslatorInterface');
+        return $this->createMock('Symfony\Component\Translation\TranslatorInterface');
     }
 
     private function createTranslatedView()
