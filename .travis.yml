@@ -47,6 +47,5 @@ before_install:
 
 install:
   - composer install
-  - composer info -D | sort
 
 script: php tests.php
