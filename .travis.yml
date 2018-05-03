@@ -1,5 +1,10 @@
 language: php
 
+sudo: false
+
+git:
+  depth: 1
+
 dist: trusty
 
 php:
@@ -11,6 +16,7 @@ php:
   - 7.2
 
 matrix:
+  fast_finish: true
   include:
     # PHP 5.3 doesn't install on Trusty on Travis: https://github.com/travis-ci/travis-ci/issues/8219
     - php: 5.3
@@ -24,18 +30,20 @@ matrix:
       env: SYMFONY_VERSION=2.8.*
     - php: 5.6
       env: SYMFONY_VERSION=3.0.*
-
-sudo: false
+    - php: 7.2
+      env: SYMFONY_VERSION=4.0.*
 
 cache:
   directories:
-    - $HOME/.composer/cache/files
+    - $HOME/.composer
 
 before_install:
   - composer self-update
   - if [ "$SYMFONY_VERSION" != "" ]; then composer require --dev --no-update symfony/symfony=$SYMFONY_VERSION; fi
   - INI_FILE=~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini;
   - echo memory_limit = -1 >> $INI_FILE
+  # turn off XDebug
+  - phpenv config-rm xdebug.ini || return 0
 
 install:
   - composer install

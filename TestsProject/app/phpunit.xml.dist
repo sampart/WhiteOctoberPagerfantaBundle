@@ -2,6 +2,10 @@
 
 <phpunit bootstrap="autoload.php" colors="true">
 
+    <php>
+        <env name="KERNEL_CLASS" value="AppKernel" />
+    </php>
+
     <testsuites>
         <testsuite name="Project Test Suite">
             <directory>../src/*/*Bundle/Tests</directory>
