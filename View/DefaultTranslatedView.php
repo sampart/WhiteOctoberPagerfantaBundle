@@ -22,7 +22,7 @@ class DefaultTranslatedView extends TranslatedView
 {
     protected function previousMessageOption()
     {
-        return 'previous_message';
+        return 'prev_message';
     }
 
     protected function nextMessageOption()
