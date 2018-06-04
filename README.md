@@ -113,6 +113,14 @@ For Bootstrap 3:
 </div>
 ```
 
+
+For Bootstrap 4:
+
+```twig
+<div class="pagerfanta">
+    {{ pagerfanta(my_pager, 'twitter_bootstrap4') }}
+</div>
+```
 ### Custom template
 
 
