@@ -22,7 +22,9 @@ Installation
 php composer.phar require white-october/pagerfanta-bundle
 ```
 
-2) Then add the WhiteOctoberPagerfantaBundle to your application kernel:
+2) Then add the WhiteOctoberPagerfantaBundle to your application:
+
+In Symfony < 4:
 
 ```php
 // app/AppKernel.php
@@ -35,6 +37,19 @@ public function registerBundles()
     );
 }
 ```
+
+In Symfony 4:
+
+```php
+// config/bundles.php
+return [
+    // ...
+    WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle::class => ['all' => true],
+    // ...
+];
+```
+
+(This project is not yet configured with Symfony Flex, so this change to `config/bundles.php` won't be done automatically.)
 
 3) Configure and use things!
 
