@@ -38,18 +38,7 @@ public function registerBundles()
 }
 ```
 
-In Symfony 4:
-
-```php
-// config/bundles.php
-return [
-    // ...
-    WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle::class => ['all' => true],
-    // ...
-];
-```
-
-(This project is not yet configured with Symfony Flex, so this change to `config/bundles.php` won't be done automatically.)
+In Symfony 4 with Symfony Flex this will be done automatically for you.
 
 3) Configure and use things!
 
