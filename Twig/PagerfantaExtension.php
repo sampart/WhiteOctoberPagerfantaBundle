@@ -18,13 +18,15 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\PropertyAccess\PropertyPath;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
 
 /**
  * PagerfantaExtension.
  *
  * @author Pablo Díez <pablodip@gmail.com>
  */
-class PagerfantaExtension extends \Twig_Extension
+class PagerfantaExtension extends AbstractExtension
 {
     private $defaultView;
     private $viewFactory;
@@ -46,8 +48,8 @@ class PagerfantaExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFunction('pagerfanta', array($this, 'renderPagerfanta'), array('is_safe' => array('html'))),
-            new \Twig_SimpleFunction('pagerfanta_page_url', array($this, 'getPageUrl')),
+            new TwigFunction('pagerfanta', array($this, 'renderPagerfanta'), array('is_safe' => array('html'))),
+            new TwigFunction('pagerfanta_page_url', array($this, 'getPageUrl')),
         );
     }
 
