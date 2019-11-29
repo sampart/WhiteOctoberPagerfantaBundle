@@ -15,7 +15,7 @@ class ConvertNotValidMaxPerPageToNotFoundListener implements EventSubscriberInte
     public function onException(GetResponseForExceptionEvent $event)
     {
         if ($event->getException() instanceof NotValidMaxPerPageException) {
-            $event->setException(new NotFoundHttpException('Page Not Found', $event->getException()));
+            $event->setException(new NotFoundHttpException('Page Not Found', $event->getThrowable()));
         }
     }
 
