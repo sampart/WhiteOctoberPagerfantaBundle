@@ -14,8 +14,21 @@ class ConvertNotValidCurrentPageToNotFoundListener implements EventSubscriberInt
      */
     public function onException(GetResponseForExceptionEvent $event)
     {
-        if ($event->getException() instanceof NotValidCurrentPageException) {
-            $event->setException(new NotFoundHttpException('Page Not Found', $event->getException()));
+        if (method_exists($event, 'getThrowable')) {
+            $throwable = $event->getThrowable();
+        } else {
+            // Support for Symfony 4.3 and before
+            $throwable = $event->getException();
+        }
+
+        if ($throwable instanceof NotValidCurrentPageException) {
+            $notFoundHttpException = new NotFoundHttpException('Page Not Found', $throwable);
+            if (method_exists($event, 'setThrowable')) {
+                $event->setThrowable($notFoundHttpException);
+            } else {
+                // Support for Symfony 4.3 and before
+                $event->setException($notFoundHttpException);
+            }
         }
     }
 
