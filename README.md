@@ -1,4 +1,4 @@
-_This project is looking for maintainers - [details here](https://github.com/whiteoctober/WhiteOctoberPagerfantaBundle/issues/212)._
+This project is no longer maintained. If you are using it with Symfony >= 4.3, you may want to use [this fork](https://github.com/BabDev/BabDevPagerfantaBundle) instead.
 
 # WhiteOctoberPagerfantaBundle
 
