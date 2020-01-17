@@ -59,7 +59,7 @@ For example:
 ```php
 $adapter = new DoctrineORMAdapter($queryBuilder);
 $pagerfanta = new Pagerfanta($adapter);
-    return $this->render('@YourApp/Main/example.html.twig', [
+return $this->render('@YourApp/Main/example.html.twig', [
     'my_pager' => $pagerfanta,
 ]);
 ```
