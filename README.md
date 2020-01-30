@@ -1,4 +1,4 @@
-This project is no longer maintained. If you are using it with Symfony >= 4.3, you may want to use [this fork](https://github.com/BabDev/BabDevPagerfantaBundle) instead.
+This project is no longer maintained. If you are using it with Symfony 3.4, 4.4 or 5, you may want to use [this fork](https://github.com/BabDev/BabDevPagerfantaBundle) instead.
 
 # WhiteOctoberPagerfantaBundle
 
