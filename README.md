@@ -289,6 +289,8 @@ Acknowledgements
 
 Pablo Díez (pablodip@gmail.com) for most of the work on the first versions of this bundle.
 
+This project was originally located at https://github.com/whiteoctober/WhiteOctoberPagerfantaBundle.
+
 License
 -------
 
