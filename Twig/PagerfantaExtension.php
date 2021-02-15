@@ -57,8 +57,8 @@ class PagerfantaExtension extends AbstractExtension
      * Renders a pagerfanta.
      *
      * @param PagerfantaInterface $pagerfanta The pagerfanta.
-     * @param string|array        $viewName   The view name.
-     * @param array               $options    An array of options (optional).
+     * @param string|array $viewName The view name.
+     * @param array $options An array of options (optional).
      *
      * @return string The pagerfanta rendered.
      */
@@ -109,11 +109,11 @@ class PagerfantaExtension extends AbstractExtension
     private function createRouteGenerator($options = array())
     {
         $options = array_replace(array(
-                'routeName'     => null,
-                'routeParams'   => array(),
-                'pageParameter' => '[page]',
-                'omitFirstPage' => false
-            ), $options);
+            'routeName' => null,
+            'routeParams' => array(),
+            'pageParameter' => '[page]',
+            'omitFirstPage' => false
+        ), $options);
 
         $router = $this->router;
 
@@ -140,10 +140,12 @@ class PagerfantaExtension extends AbstractExtension
         $pagePropertyPath = new PropertyPath($options['pageParameter']);
         $omitFirstPage = $options['omitFirstPage'];
 
-        return function($page) use($router, $routeName, $routeParams, $pagePropertyPath, $omitFirstPage) {
+        return function ($page) use ($router, $routeName, $routeParams, $pagePropertyPath, $omitFirstPage) {
             $propertyAccessor = PropertyAccess::createPropertyAccessor();
-            if($omitFirstPage){
-                $propertyAccessor->setValue($routeParams, $pagePropertyPath, $page > 1 ? $page : null);
+            if ($omitFirstPage) {
+                if ($page > 1) {
+                    $propertyAccessor->setValue($routeParams, $pagePropertyPath, $page);
+                }
             } else {
                 $propertyAccessor->setValue($routeParams, $pagePropertyPath, $page);
             }
